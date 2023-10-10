@@ -7,7 +7,6 @@ use App\Http\Requests\advertiserPatchRequest;
 use App\Http\Requests\registrationAdvertiserRequest;
 use App\Models\etelFelajanlo;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
@@ -87,22 +86,27 @@ class etelFelajanloController extends Controller
                 'message' => 'Az ön által megadott adatok nem helyesek!'
             ], 400);
         }
+        Auth::guard('etel_felajanlo')->loginUsingId($user->id);
         
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
 
-        if (Auth::attempt($credentials)) {
+        /*
+        $credentials = $request->validate([
+            'emailCim' => ['email'],
+            'password' => [],
+        ]);
+        
+
+        if (Auth::guard('etel_felajanlo')->attempt($credentials)) {
             $request->session()->regenerate();
 
             error_log('you are validated :D');
-            return redirect()->intended('dashboard', 200);
+            return redirect()->intended();
         }
 
         return back()->withErrors([
             'email' => 'Az ön által szolgáltatott adatok nem egyeznek a rekordjainkkal.',
         ])->onlyInput('email');
+        */
     }
     
 }

@@ -40,6 +40,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'etelmento' => [
+            'driver' => 'session',
+            'provider' => 'etelmento',
+        ],
+        'jotekonysagi_szerv' => [
+            'driver' => 'session',
+            'provider' => 'jotekonysagi_szerv',
+        ],
+        'etel_felajanlo' => [
+            'driver' => 'session',
+            'provider' => 'etel_felajanlo',
+        ]
     ],
 
     /*
@@ -63,6 +75,18 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'etelmento' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\etelMento::class,
+        ],
+        'jotekonysagi_szerv' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\jotekonysagiSzervezet::class,
+        ],
+        'etel_felajanlo' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\etelFelajanlo::class,
         ],
 
         // 'users' => [

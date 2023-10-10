@@ -66,10 +66,6 @@ class jotekonysagiSzervezetController extends Controller
                 'message' => 'Az ön által megadott adatok nem helyesek!'
             ], 400);
         }
-
-        return $user;
-        Auth::login($user);
-
-        return response()->json(Auth::user(), 200);
+        Auth::guard('jotekonysagi_szerv')->loginUsingId($user->id);
     }
 }

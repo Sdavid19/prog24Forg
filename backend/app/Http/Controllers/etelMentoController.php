@@ -71,13 +71,6 @@ class etelMentoController extends Controller
                 'message' => 'Az ön által megadott adatok nem helyesek!'
             ], 400);
         }
-        
-        return $user;
-        Auth::login($user);
-
-        return response()->json(Auth::user(), 200);
+        Auth::guard('etelmento')->loginUsingId($user->id);
     }
-
-    
-
 }
