@@ -22,6 +22,14 @@
               >Kezdőlap</RouterLink
             >
           </li>
+          <li class="my-nav-item">
+            <RouterLink
+              class="nav-link"
+              to="/foods"
+              :class="route.path == '/foods' ? ' my-active' : ''"
+              >Ételek</RouterLink
+            >
+          </li>
         </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="my-nav-item">
@@ -38,6 +46,15 @@
               to="/signup"
               :class="route.path == '/signup' ? ' my-active' : ''"
               >Regisztráció</RouterLink
+            >
+          </li>
+
+          <li class="my-nav-item">
+            <RouterLink
+              class="nav-link"
+              to="/profile"
+              :class="route.path == '/profile' ? ' my-active' : ''"
+              >Profil</RouterLink
             >
           </li>
         </ul>
