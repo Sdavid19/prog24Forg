@@ -1,6 +1,6 @@
 <template>
     <form class="p-5">
-    <h1 class="mb-5 text-center">Adjon meg még pár adatot:</h1>
+    <h2 class="mb-5 text-center">Adjon meg még pár adatot:</h2>
         <div class="simple">
             <div class="mb-3">
                 <label for="name main" class="form-label main">Név</label>

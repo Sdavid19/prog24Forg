@@ -1,6 +1,6 @@
 <template>
     <form class="p-5">
-    <h1 class="text-center my-5">Adjon meg még pár adatot:</h1>
+    <h2 class="text-center my-5">Adjon meg még pár adatot:</h2>
     <div class="spec">
         <fieldset class="mb-3">
             <legend>Konyha jellege: </legend>
