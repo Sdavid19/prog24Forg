@@ -3,8 +3,8 @@
     <h2 class="mb-5 text-center">Adjon meg még pár adatot:</h2>
         <div class="simple">
             <div class="mb-3">
-                <label for="name main" class="form-label main">Név</label>
-                <input type="text" class="form-control" id="companyName">
+                <label for="name" class="form-label main">Név</label>
+                <input type="text" class="form-control" id="name">
             </div>
             <div class="mb-3">
                 <label for="companyName" class="form-label main">Felhasználó típus</label>
