@@ -2,9 +2,15 @@
   <h2 class="my-5">Felhasználó felvitel fájlból</h2>
   <div class="my-5">
     <label for="formFile" class="form-label">Válasszon ki egy fájlt</label>
-    <input class="form-control" type="file" id="formFile" @change="readFile" />
+    <input
+      class="form-control"
+      type="file"
+      id="formFile"
+      @change="readFile"
+      accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+    />
   </div>
-
+  <p class="color-danger" v-if="error">Hiba a fájl beolvasása közben!</p>
   <div v-if="foodsavers.length">
     <h2 class="my-3">Előnézet:</h2>
     <table class="table main">
@@ -119,6 +125,7 @@ let foodSaverData = ref({
 });
 
 let foodsavers = ref([]);
+let error = ref(false);
 
 //Fájlbeolvasás
 function readFile(e) {
@@ -159,7 +166,7 @@ function formatCsv(content) {
           intolarences: format(dataIntolerances),
         };
       } else {
-        alert("Hiba az adatok beolvasása közben! A kötelező adatok nem szerepelnek!");
+        error.value = true;
       }
       foodsavers.value.push(foodSaverData.value);
     }
