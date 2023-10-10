@@ -1,10 +1,17 @@
 <template>
-  <FoodSaverProfileComponent />
+  <div class="signup-grid">
+    <FoodAdvertiserSignupComponent />
+  </div>
 </template>
 
 <script setup>
-import FoodSaverProfileComponent from "../components/FoodSaverProfileComponent.vue";
-// import BasicProfileComponenet from "../components/BasicProfileComponenet.vue";
+import FoodSaverSignupComponent from "../components/FoodSaverSignupComponent.vue";
+import FoodAdvertiserSignupComponent from "../components/FoodAdvertiserSignupComponent.vue";
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.signup-grid {
+  display: flex;
+  justify-content: center;
+}
+</style>

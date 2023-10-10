@@ -1,15 +1,13 @@
 <template>
-    <div class="signup-container">
     <form class="p-5">
-    <h2 class="mb-4 text-center">Profil</h2>
-    <div class="profile-grid">
+    <h2 class="mb-5 text-center">Adjon meg még pár adatot:</h2>
         <div class="simple">
             <div class="mb-3">
                 <label for="name" class="form-label main">Név</label>
                 <input type="text" class="form-control" id="name">
             </div>
             <div class="mb-3">
-                <label for="companyName" class="form-label name">Felhasználó típus</label>
+                <label for="companyName" class="form-label main">Felhasználó típus</label>
                 <select class="form-select" aria-label="Default select">
                     <option selected value="1">Ételmentő</option>
                     <option value="2">Jótékonysági szervezet</option>
@@ -30,12 +28,10 @@
                 <input type="text" placeholder="Hosszúság" class="form-control mt-2" id="longitude">
             </div>
         </div>
-    </div>
     <div class="btn-container">
         <button type="submit" class="btn btn-primary">Frissítés</button>
     </div>
 </form>
-</div>
 </template>
 
 <script setup>
@@ -44,12 +40,6 @@
 
 <style lang="css" scoped>
 
-.signup-container{
-        min-height: calc(100vh - 100px);
-        display: grid;
-        place-items: center;
-        margin: 20px;
-    }
     .btn-container{
         margin-top: 30px;
         display: flex;

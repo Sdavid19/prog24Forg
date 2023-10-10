@@ -54,27 +54,40 @@
         </p>
       </div>
       <div class="btn-container">
-        <button type="button" @click="trySignUp()" class="btn btn-primary">
-          Regisztráció
-        </button>
+        <button type="button" @click="trySignUp()" class="btn btn-primary">Tovább</button>
       </div>
     </form>
+  </div>
+  <div class="more-data-grid">
+    <FoodSaverProfileComponent v-if="signupData.userType == 1" />
+    <!-- <FoodAdvertiserSignupComponent v-if="signupData.userType == 2" /> -->
+    <FoodAdvertiserSignupComponent v-if="signupData.userType == 3" />
   </div>
 </template>
 
 <script setup>
+import FoodSaverProfileComponent from "../../components/FoodSaverSignupComponent.vue";
+import FoodAdvertiserSignupComponent from "../../components/FoodAdvertiserSignupComponent.vue";
 import { ref } from "vue";
 
 let error = ref(false);
 
 let signupData = ref({
-  name: "",
+  //   name: "",
+  //   userType: 1,
+  //   email: "",
+  //   password: "",
+  //   geoLocation: {
+  //     latitude: 0,
+  //     longitude: 0,
+  //   },
+  name: "a",
   userType: 1,
-  email: "",
-  password: "",
+  email: "a",
+  password: "a",
   geoLocation: {
-    latitude: 0,
-    longitude: 0,
+    latitude: 10,
+    longitude: 10,
   },
 });
 
@@ -88,6 +101,7 @@ function trySignUp() {
   ) {
     error.value = false;
     //POST
+    document.getElementsByClassName("more-data-grid")[0].scrollIntoView();
     console.log(signupData.value);
   } else {
     error.value = true;
@@ -114,5 +128,10 @@ form {
 }
 .no-error {
   visibility: hidden;
+}
+
+.more-data-grid {
+  display: flex;
+  justify-content: center;
 }
 </style>
