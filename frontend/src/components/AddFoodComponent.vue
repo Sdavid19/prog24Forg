@@ -20,7 +20,7 @@
         />
       </div>
       <div class="mb-3">
-        <select class="form-select" v-model="foodData.foodCategory">
+        <select class="form-select" v-model="foodData.type">
           <option value="0" disabled>Válassz típust</option>
           <option value="1">Melegítendő</option>
           <option value="2">Hideg</option>
@@ -111,11 +111,11 @@
 <script setup>
 import { ref } from "vue";
 const foodData = ref({
-  nev: "",
-  foodCategory: 0,
+  name: "",
+  type: 0,
   allergies: [],
   expirationDate: "",
-  consumption: 0,
+  consumption: false,
   cousine: 0,
 });
 

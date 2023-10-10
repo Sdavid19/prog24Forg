@@ -25,7 +25,14 @@
         </thead>
         <tbody>
           <tr v-for="food in foods">
-            <td v-for="adat in food">{{ adat }}</td>
+            <td>{{ food.name }}</td>
+            <td>{{ food.type }}</td>
+            <td>
+              <span v-for="allergy in food.allergies">{{ allergy }}&nbsp;</span>
+            </td>
+            <td>{{ food.expirationDate }}</td>
+            <td>{{ food.consumption }}</td>
+            <td>{{ food.cousine }}</td>
           </tr>
         </tbody>
       </table>
@@ -53,7 +60,7 @@ const foods = ref([
   {
     name: "kakaós csiga",
     type: "hideg",
-    allergies: "laktóz",
+    allergies: ["laktóz"],
     expirationDate: "2022-12-12",
     consumption: false,
     cousine: "olasz",
@@ -61,7 +68,7 @@ const foods = ref([
   {
     name: "mogyorós párna",
     type: "meleg",
-    allergies: "mogyoró",
+    allergies: ["mogyoró", "laktóz"],
     expirationDate: "2020-12-12",
     consumption: false,
     cousine: "mexikói",
