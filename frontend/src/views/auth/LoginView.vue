@@ -15,8 +15,11 @@
           v-model="loginData.password"
         />
       </div>
+
       <div>
-        <p class="text-center text-danger error">Error!</p>
+        <p class="text-center text-danger" :class="error ? '' : ' no-error'">
+          A mezők kitöltése kötelező
+        </p>
       </div>
       <div class="btn-container">
         <button type="button" class="btn btn-primary" @click="tryLogin()">
@@ -29,7 +32,7 @@
 
 <script setup>
 import { ref } from "vue";
-
+const error = ref(false);
 const loginData = ref({
   email: "",
   password: "",
@@ -38,9 +41,11 @@ const loginData = ref({
 function tryLogin() {
   console.log(loginData);
   if (loginData.value.email && loginData.value.password) {
+    error.value = false;
     //send request
   } else {
-    alert("Kérem töltsön ki minden mezőt");
+    error.value = true;
+    // alert("Kérem töltsön ki minden mezőt");
   }
 }
 </script>
@@ -61,7 +66,7 @@ form {
   display: flex;
   justify-content: center;
 }
-.error {
+.no-error {
   visibility: hidden;
 }
 </style>
