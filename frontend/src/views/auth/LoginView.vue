@@ -18,7 +18,7 @@
 
       <div>
         <p class="text-center text-danger" :class="error ? '' : ' no-error'">
-          A mezők kitöltése kötelező
+          Kérem töltsön ki minden mezőt!
         </p>
       </div>
       <div class="btn-container">
@@ -32,8 +32,8 @@
 
 <script setup>
 import { ref } from "vue";
-const error = ref(false);
-const loginData = ref({
+let error = ref(false);
+let loginData = ref({
   email: "",
   password: "",
 });
