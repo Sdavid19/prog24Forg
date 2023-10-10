@@ -7,7 +7,7 @@ export const useBackendStore = defineStore('backend', {
      }),
     getters: {},
     actions: {
-        getWeatherData(){
+        getXData(){
             Axios.get(``)
             .then( resp=>{
                 this.backendData=resp.data;

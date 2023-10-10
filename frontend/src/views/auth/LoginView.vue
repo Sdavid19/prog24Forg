@@ -32,6 +32,8 @@
 
 <script setup>
 import { ref } from "vue";
+import { storeToRefs } from "pinia";
+import Axios from "../../stores/dataService";
 let error = ref(false);
 let loginData = ref({
   email: "",
@@ -42,7 +44,16 @@ function tryLogin() {
   console.log(loginData);
   if (loginData.value.email && loginData.value.password) {
     error.value = false;
-    //send request
+    //POST
+    Axios.post("/login", loginData.value)
+      .then(() => {
+        error.value = false;
+        console.log("belép");
+      })
+      .catch(() => {
+        error.value = true;
+        console.log("hiba :c");
+      });
   } else {
     error.value = true;
   }
