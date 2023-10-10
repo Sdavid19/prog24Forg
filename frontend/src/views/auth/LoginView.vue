@@ -26,7 +26,7 @@
 
 <style lang="css" scoped>
     .login-container{
-        height: calc(100vh - 70px);
+        min-height: calc(100vh - 70px);
         display: grid;
         place-items: center;
     }

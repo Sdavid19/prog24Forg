@@ -1,10 +1,18 @@
 <template>
     <div class="signup-container">
         <form class="shadow p-5">
-        <h2 class="mb-5 text-center">Regisztráció</h2>
+        <h2 class="mb-4 text-center">Regisztráció</h2>
         <div class="mb-3">
-            <label for="companyName" class="form-label">Cég név</label>
+            <label for="companyName" class="form-label">Név</label>
             <input type="text" class="form-control" id="companyName">
+        </div>
+        <div class="mb-3">
+            <label for="companyName" class="form-label">Felhasználó típus</label>
+            <select class="form-select" aria-label="Default select example">
+                <option selected value="1">Ételmentő</option>
+                <option value="2">Jótékonysági szervezet</option>
+                <option value="3">Étel felajánló ()</option>
+            </select>
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email cím</label>
@@ -35,9 +43,10 @@
 
 <style lang="css" scoped>
     .signup-container{
-        height: calc(100vh - 70px);
+        min-height: calc(100vh - 100px);
         display: grid;
         place-items: center;
+        margin: 20px;
     }
     form{
         min-width: 300px;
