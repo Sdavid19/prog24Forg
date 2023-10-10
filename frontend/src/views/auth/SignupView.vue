@@ -11,7 +11,7 @@
             <select class="form-select" aria-label="Default select example">
                 <option selected value="1">Ételmentő</option>
                 <option value="2">Jótékonysági szervezet</option>
-                <option value="3">Étel felajánló ()</option>
+                <option value="3">Étel felajánló (cég)</option>
             </select>
         </div>
         <div class="mb-3">
@@ -21,11 +21,6 @@
         <div class="mb-3">
             <label for="password" class="form-label">Jelszó</label>
             <input type="password" class="form-control" id="password">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Geo lokáció: </label>
-            <input type="text" class="form-control mb-2" id="Longitude" placeholder="Szélesség">
-            <input type="text" class="form-control mt-2" id="Latitude" placeholder="Hosszúság">
         </div>
         <div>
             <p class="text-center text-danger error">Hiba!</p>
