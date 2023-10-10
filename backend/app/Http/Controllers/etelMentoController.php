@@ -61,10 +61,10 @@ class etelMentoController extends Controller
     {
         session()->flush();
 
-        $name = $request->input('name', null);
+        $email = $request->input('email', null);
         $password = $request->input('password', null);
 
-        $user = etelMento::all()->firstWhere('nev', '=', $name);
+        $user = etelMento::all()->firstWhere('emailCim', '=', $email);
         if (!$user || !($user->jelszo == $password)) {
             return response()->json([
                 'success' => false,
