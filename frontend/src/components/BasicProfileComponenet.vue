@@ -5,8 +5,8 @@
     <div class="profile-grid">
         <div class="simple">
             <div class="mb-3">
-                <label for="name main" class="form-label main">Név</label>
-                <input type="text" class="form-control" id="companyName">
+                <label for="name" class="form-label main">Név</label>
+                <input type="text" class="form-control" id="name">
             </div>
             <div class="mb-3">
                 <label for="companyName" class="form-label name">Felhasználó típus</label>
