@@ -78,6 +78,7 @@ const route = useRoute();
   width: 100%;
   overflow: hidden;
   z-index: 10;
+  background-color: #caf0f8 !important;
 }
 
 .my-nav-item {
@@ -103,11 +104,11 @@ const route = useRoute();
 
 .my-nav-item a {
   text-decoration: none;
-  color: #7d7e7d;
+  color: #272727;
 }
 
 .my-active {
   color: #0e476b !important;
-  font-weight: 500;
+  font-weight: bold;
 }
 </style>
