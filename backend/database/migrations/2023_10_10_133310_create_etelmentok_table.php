@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('etelmentok', function (Blueprint $table) {
+        Schema::create('etelmento', function (Blueprint $table) {
             $table->id();
             $table->string('nev', 100);
-            $table->string('email', 100);
+            $table->string('emailCim', 100);
             $table->string('jelszo', 100);
             $table->double('geolokaciosCim', 50);
-            $table->string('etelIntolerancia', 50);
-            $table->integer('etelAllergia');
-            $table->integer('diabetesz');
-            $table->string('konyhapreferencia', 100);
+            $table->integer('etrend')->nullable();
+            $table->integer('konyhaPreferencia')->nullable();
+            $table->integer('diabetesz')->nullable();
+            $table->string('etelIntolerancia', 50)->nullable();
+            $table->integer('etelAllergia')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('etelmentok');
+        Schema::dropIfExists('etelmento');
     }
 };

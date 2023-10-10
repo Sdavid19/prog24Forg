@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('email', 100);
             $table->string('jelszo', 100);
             $table->double('geolokaciosCim');
-            $table->string('letesitmenyFajta', 50);
-            $table->string('konyhaJelleg', 100);
+            $table->string('letesitmenyFajta', 50)->nullable();
+            $table->string('konyhaJelleg', 100)->nullable();
             $table->timestamps();
         });
     }
