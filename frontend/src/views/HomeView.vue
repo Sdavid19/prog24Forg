@@ -1,4 +1,4 @@
-<template></template>
+<template>Hello c:</template>
 
 <script setup></script>
 

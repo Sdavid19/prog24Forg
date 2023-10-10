@@ -38,6 +38,14 @@
               >Felajánlásaid</RouterLink
             >
           </li>
+          <li class="my-nav-item">
+            <RouterLink
+              class="nav-link"
+              to="/read-file"
+              :class="route.path == '/read-file' ? ' my-active' : ''"
+              >Fájl beolvasás</RouterLink
+            >
+          </li>
         </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="my-nav-item">
