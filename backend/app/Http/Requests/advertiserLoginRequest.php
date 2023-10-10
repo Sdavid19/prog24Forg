@@ -11,7 +11,7 @@ class advertiserLoginRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class advertiserLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|exists:etelFelajanlo,emailCim',
+            'email' => 'required|exists:etel_felajanlo,emailCim',
             'password' => 'required'
         ];
     }

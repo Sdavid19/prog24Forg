@@ -61,23 +61,16 @@ class etelMentoController extends Controller
     {
         session()->flush();
 
-        $name = $request->input('name', null);
+        $email = $request->input('email', null);
         $password = $request->input('password', null);
 
-        $user = etelMento::all()->firstWhere('nev', '=', $name);
+        $user = etelMento::all()->firstWhere('emailCim', '=', $email);
         if (!$user || !($user->jelszo == $password)) {
             return response()->json([
                 'success' => false,
                 'message' => 'Az ön által megadott adatok nem helyesek!'
             ], 400);
         }
-        
-        return $user;
-        Auth::login($user);
-
-        return response()->json(Auth::user(), 200);
+        Auth::guard('etelmento')->loginUsingId($user->id);
     }
-
-    
-
 }

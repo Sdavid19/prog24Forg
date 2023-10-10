@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('jotekonysagi_szerv', function (Blueprint $table) {
             $table->id();
             $table->string('nev', 100);
-            $table->string('email', 100);
+            $table->string('emailCim', 100);
             $table->string('jelszo', 100);
             $table->double('geolokaciosCim', 50);
             $table->timestamps();
