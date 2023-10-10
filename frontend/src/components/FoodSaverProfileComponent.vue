@@ -58,15 +58,15 @@
                 </div>
             </fieldset>
             <fieldset class="mb-3">
-                <legend>Étel</legend>
+                <legend>Étel intolerancia:</legend>
                 <div class="grid">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="1">
-                        <label class="form-check-label" for="defaultCheck1">Laktóz</label>
+                        <input class="form-check-input" type="checkbox" id="intol1" value="1">
+                        <label class="form-check-label" for="intol1">Laktóz</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="2" >
-                        <label class="form-check-label" for="defaultCheck2">Glutén</label>
+                        <input class="form-check-input" type="checkbox" id="intol2" value="2" >
+                        <label class="form-check-label" for="intol2">Glutén</label>
                     </div>
                 </div>
             </fieldset>
@@ -160,6 +160,11 @@
     .main, legend{
         font-size: 20px;
     }
-
+    @media only screen and (max-width: 1000px) {
+        .profile-grid{
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+}
 
 </style>
