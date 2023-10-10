@@ -73,11 +73,6 @@ const route = useRoute();
 <style scoped>
 .navbar {
   min-height: 70px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  overflow: hidden;
-  z-index: 10;
   background-color: #caf0f8 !important;
 }
 
