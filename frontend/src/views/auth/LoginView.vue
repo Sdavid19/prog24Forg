@@ -45,7 +45,7 @@ function tryLogin() {
   if (loginData.value.email && loginData.value.password) {
     error.value = false;
     //POST
-    Axios.post("/login", loginData.value)
+    Axios.post("/user-login", loginData.value)
       .then(() => {
         error.value = false;
         console.log("belép");
