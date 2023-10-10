@@ -22,6 +22,11 @@
             <label for="password" class="form-label">Jelszó</label>
             <input type="password" class="form-control" id="password">
         </div>
+        <div class="mb-3">
+                <label class="form-label main">Geo lokáció</label>
+                <input type="text" placeholder="Szélesség" class="form-control mb-2" id="latitude">
+                <input type="text" placeholder="Hosszúság" class="form-control mt-2" id="longitude">
+        </div>
         <div>
             <p class="text-center text-danger error">Hiba!</p>
         </div>
