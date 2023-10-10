@@ -37,7 +37,7 @@
     </table>
 
     <div class="buttons my-5">
-      <button class="btn btn-primary me-4" @click="trySendData()">Mentés</button>
+      <button class="btn btn-primary me-4" @click="trySendData()">Küldés</button>
       <button
         class="btn btn-warning me-4 ms-4"
         data-bs-toggle="modal"
@@ -59,7 +59,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Jelmagyarázat</h1>
+          <h1 class="modal-title fs-5">Jelmagyarázat</h1>
           <button
             type="button"
             class="btn-close"
@@ -120,6 +120,7 @@ let foodSaverData = ref({
 
 let foodsavers = ref([]);
 
+//Fájlbeolvasás
 function readFile(e) {
   let file = e.target.files[0];
   const reader = new FileReader();
@@ -130,6 +131,7 @@ function readFile(e) {
   };
 }
 
+//Csv fájl mentése JSON formátumba
 function formatCsv(content) {
   let rows = content.split(/\r?\n/);
   rows.shift();
@@ -147,7 +149,7 @@ function formatCsv(content) {
         dataAllergies.push(data[index]);
       }
       let dataIntolerances = [data[8], data[9]];
-      if (dataName && dataPlace && dataDate)
+      if (dataName && dataPlace && dataDate) {
         foodSaverData.value = {
           name: dataName,
           birthPlace: dataPlace,
@@ -156,12 +158,17 @@ function formatCsv(content) {
           allergies: format(dataAllergies),
           intolarences: format(dataIntolerances),
         };
-
+      } else {
+        alert("Hiba az adatok beolvasása közben! A kötelező adatok nem szerepelnek!");
+      }
       foodsavers.value.push(foodSaverData.value);
+    } else {
+      alert("Hiba! A fájl nem olvasható!");
     }
   });
 }
 
+//Intolerancia és Allergia megformázása
 function format(array) {
   array = array.filter((str) => str != "");
 
@@ -178,7 +185,13 @@ function resetFile() {
   document.getElementById("formFile").value = "";
 }
 
-function trySendData() {}
+function trySendData() {
+  if (foodsavers.vaule != 0) {
+    console.log(foodsavers);
+  } else {
+    alert("Hiba! Az adatokat nem sikerült beolvasni és elküldeni!");
+  }
+}
 </script>
 
 <style lang="css" scoped>
