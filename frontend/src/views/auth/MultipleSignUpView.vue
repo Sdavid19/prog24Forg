@@ -162,8 +162,6 @@ function formatCsv(content) {
         alert("Hiba az adatok beolvasása közben! A kötelező adatok nem szerepelnek!");
       }
       foodsavers.value.push(foodSaverData.value);
-    } else {
-      alert("Hiba! A fájl nem olvasható!");
     }
   });
 }
