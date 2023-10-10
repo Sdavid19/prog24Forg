@@ -45,7 +45,6 @@ function tryLogin() {
     //send request
   } else {
     error.value = true;
-    // alert("Kérem töltsön ki minden mezőt");
   }
 }
 </script>
