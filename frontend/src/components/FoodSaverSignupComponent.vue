@@ -106,7 +106,7 @@
       </fieldset>
     </div>
     <div class="btn-container">
-      <button type="submit" class="btn btn-primary">Regisztráció</button>
+      <button type="submit" class="btn btn-primary">Tovább</button>
     </div>
   </form>
 </template>
