@@ -22,6 +22,14 @@
               >Kezdőlap</RouterLink
             >
           </li>
+          <li class="my-nav-item">
+            <RouterLink
+              class="nav-link"
+              to="/foods"
+              :class="route.path == '/foods' ? ' my-active' : ''"
+              >Ételek</RouterLink
+            >
+          </li>
         </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="my-nav-item">
@@ -40,6 +48,15 @@
               >Regisztráció</RouterLink
             >
           </li>
+
+          <li class="my-nav-item">
+            <RouterLink
+              class="nav-link"
+              to="/profile"
+              :class="route.path == '/profile' ? ' my-active' : ''"
+              >Profil</RouterLink
+            >
+          </li>
         </ul>
       </div>
     </div>
@@ -56,11 +73,7 @@ const route = useRoute();
 <style scoped>
 .navbar {
   min-height: 70px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  overflow: hidden;
-  z-index: 10;
+  background-color: #caf0f8 !important;
 }
 
 .my-nav-item {
@@ -86,11 +99,11 @@ const route = useRoute();
 
 .my-nav-item a {
   text-decoration: none;
-  color: #7d7e7d;
+  color: #272727;
 }
 
 .my-active {
   color: #0e476b !important;
-  font-weight: 500;
+  font-weight: bold;
 }
 </style>
