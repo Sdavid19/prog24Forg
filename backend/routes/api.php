@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\etelFelajanloController;
+use App\Http\Controllers\etelMentoController;
+use App\Http\Controllers\jotekonysagiSzervezetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/user-signup', [etelMentoController::class, 'store']);
+Route::post('/user-login', [etelMentoController::class, 'loginRequest']);
+
+Route::post('/charity-signup', [jotekonysagiSzervezetController::class, 'store']);
+Route::post('/charity-login', [jotekonysagiSzervezetController::class, 'loginRequest']);
+
+Route::post('/advertiser-signup', [etelFelajanloController::class, 'store']);
+Route::post('/advertiser-login', [etelFelajanloController::class, 'loginRequest']);
