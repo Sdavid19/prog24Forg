@@ -20,10 +20,10 @@
       <Column field="allergies" header="Allergének" sortable>
         <template #body="slotProps">
           <span v-for="allergy in slotProps.data.allergies">
-            {{}}
             <img :src="'/src/assets/img/' + allergy[0] + '-mentes.png'" alt="" />
-          </span> </template
-      ></Column>
+          </span>
+        </template>
+      </Column>
       <Column field="expirationDate" header="Lejárati dátum" sortable></Column>
       <Column header="Fogyasztás" sortable>
         <template #body="slotProps">
@@ -89,6 +89,10 @@ const filters = ref({
   global: { value: null, matchMode: FilterMatchMode.CONTAINS },
   name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
 });
+
+console.log(
+  "aHR0cHM6Ly93d3cucmVkZGl0LmNvbS9tZWRpYT91cmw9aHR0cHMlM0ElMkYlMkZpLnJlZGQuaXQlMkZiam83aGdpdzVsbjUxLmpwZw=="
+);
 </script>
 
 <style lang="scss" scoped></style>
