@@ -5,6 +5,7 @@ import LoginView from '../views/auth/LoginView.vue'
 import SignupView from '../views/auth/SignupView.vue'
 import FoodListView from '../views/FoodListView.vue'
 import CreateFoodView from '../views/CreateFoodView.vue'
+import MultipleSignUpView from '../views/auth/MultipleSignUpView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,6 +40,11 @@ const router = createRouter({
       path: '/create-food',
       name: 'create-food',
       component: CreateFoodView
+    },
+    {
+      path: '/read-file',
+      name: 'read-file',
+      component: MultipleSignUpView
     }
   ]
 })
