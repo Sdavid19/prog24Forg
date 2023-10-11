@@ -91,9 +91,9 @@
           aria-label="Default select example"
           v-model="foodData.consumption"
         >
-          <option value="0" disabled>Válassz fogyasztsi módot</option>
+          <option value="2" disabled>Válassz fogyasztsi módot</option>
           <option value="1">helyben fogyasztható</option>
-          <option value="2">elvitelre</option>
+          <option value="0">elvitelre</option>
         </select>
       </div>
       <div class="mb-3">
@@ -103,10 +103,10 @@
           v-model="foodData.cousine"
         >
           <option value="0" disabled>Válassz konyha típust</option>
-          <option value="1">Mexikói</option>
-          <option value="2">Magyar</option>
-          <option value="3">Olasz</option>
-          <option value="4">Japán</option>
+          <option value="Mexikói">Mexikói</option>
+          <option value="Magyar">Magyar</option>
+          <option value="Olasz">Olasz</option>
+          <option value="Japán">Japán</option>
         </select>
       </div>
     </div>
@@ -140,7 +140,7 @@ function tryAdddingFood() {
   if (
     foodData.value.name &&
     foodData.value.expirationDate &&
-    foodData.value.consumption &&
+    foodData.value.consumption != 2 &&
     foodData.value.cousine
   ) {
     console.log(foodData.value);
