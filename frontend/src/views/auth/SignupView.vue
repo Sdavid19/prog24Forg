@@ -114,12 +114,12 @@ function trySignUp() {
   min-height: calc(100vh - 100px);
   display: grid;
   place-items: center;
-  margin: 20px;
+  margin: 20px 0;
 }
 form {
   min-width: 300px;
-  width: 40%;
-  max-width: 800px;
+  width: 50%;
+  max-width: 1000px;
 }
 .btn-container {
   margin-top: 30px;

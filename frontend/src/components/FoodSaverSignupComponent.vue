@@ -1,5 +1,5 @@
 <template>
-  <form class="p-5">
+  <form class="p-5 shadow">
     <h1 class="my-5 text-center">Adjon meg még pár adatot:</h1>
     <div class="spec">
       <div class="mb-3">
@@ -114,10 +114,6 @@
 <script setup></script>
 
 <style lang="css" scoped>
-form {
-  min-width: 300px;
-  max-width: 800px;
-}
 .btn-container {
   margin-top: 30px;
   display: flex;
@@ -135,5 +131,10 @@ fieldset {
 .main,
 legend {
   font-size: 20px;
+}
+@media only screen and (max-width: 1000px) {
+  .grid {
+    grid-template-columns: 100px;
+  }
 }
 </style>

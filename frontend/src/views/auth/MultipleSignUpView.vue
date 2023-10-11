@@ -10,8 +10,8 @@
       accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
     />
   </div>
-  <p class="color-danger" v-if="error">Hiba a fájl beolvasása közben!</p>
-  <div v-if="foodsavers.length">
+  <p class="text-danger" v-if="error">Hiba a fájl beolvasása közben!</p>
+  <div v-if="foodsavers.length && !error">
     <h2 class="my-3">Előnézet:</h2>
     <table class="table main">
       <thead>
@@ -51,7 +51,7 @@
       >
         Jelmagyarázat
       </button>
-      <button class="btn btn-danger ms-4" @click="resetFile()">Törlés</button>
+      <button class="btn btn-danger ms-4" @click="resetFileValue()">Törlés</button>
     </div>
   </div>
 
@@ -136,13 +136,14 @@ function readFile(e) {
     const csvContent = reader.result;
     formatCsv(csvContent);
   };
+  reset();
 }
 
 //Csv fájl mentése JSON formátumba
 function formatCsv(content) {
   let rows = content.split(/\r?\n/);
-  rows.shift();
-  rows.shift();
+
+  rows.splice(0, 2);
 
   rows.forEach((foodSaver) => {
     if (foodSaver) {
@@ -185,13 +186,18 @@ function format(array) {
   return array;
 }
 
-function resetFile() {
-  foodsavers.value = [];
+function resetFileValue() {
   document.getElementById("formFile").value = "";
+  reset();
+}
+
+function reset() {
+  foodsavers.value = [];
+  error.value = false;
 }
 
 function trySendData() {
-  if (foodsavers.vaule != 0) {
+  if (foodsavers.value != 0) {
     console.log(foodsavers);
   } else {
     alert("Hiba! Az adatokat nem sikerült beolvasni és elküldeni!");

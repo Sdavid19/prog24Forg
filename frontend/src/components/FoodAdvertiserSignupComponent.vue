@@ -67,4 +67,10 @@ legend {
   display: grid;
   place-content: center;
 }
+
+@media only screen and (max-width: 1000px) {
+  .grid {
+    grid-template-columns: 100px;
+  }
+}
 </style>
