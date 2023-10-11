@@ -20,6 +20,7 @@
               id="allergie1"
               name="mogyoro"
               value="1"
+              v-model="moreData.allergy"
             />
             <label class="form-check-label" for="allergie1">Mogyoró</label>
           </div>
@@ -30,6 +31,7 @@
               id="allergie2"
               name="hal"
               value="2"
+              v-model="moreData.allergy"
             />
             <label class="form-check-label" for="allergie2">Hal</label>
           </div>
@@ -40,6 +42,7 @@
               id="allergie3"
               name="tojas"
               value="3"
+              v-model="moreData.allergy"
             />
             <label class="form-check-label" for="allergie3">Tojás</label>
           </div>
@@ -49,11 +52,21 @@
         <legend>Étel</legend>
         <div class="grid">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="1" />
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="1"
+              v-model="moreData.intolerance"
+            />
             <label class="form-check-label" for="defaultCheck1">Laktóz</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="2" />
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="2"
+              v-model="moreData.intolerance"
+            />
             <label class="form-check-label" for="defaultCheck2">Glutén</label>
           </div>
         </div>
@@ -62,27 +75,63 @@
         <legend>Preferált konyha:</legend>
         <div class="grid">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="kitchen1" value="1" />
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="kitchen1"
+              value="1"
+              v-model="moreData.kitchen"
+            />
             <label class="form-check-label" for="kitchen1">Olasz</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="kitchen2" value="2" />
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="kitchen2"
+              value="2"
+              v-model="moreData.kitchen"
+            />
             <label class="form-check-label" for="kitchen2">Görög</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="kitchen3" value="3" />
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="kitchen3"
+              value="3"
+              v-model="moreData.kitchen"
+            />
             <label class="form-check-label" for="kitchen3">Amerikai</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="kitchen4" value="4" />
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="kitchen4"
+              value="4"
+              v-model="moreData.kitchen"
+            />
             <label class="form-check-label" for="kitchen4">Mexikói</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="kitchen5" value="5" />
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="kitchen5"
+              value="5"
+              v-model="moreData.kitchen"
+            />
             <label class="form-check-label" for="kitchen5">Magyar</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="kitchen6" value="6" />
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="kitchen6"
+              value="6"
+              v-model="moreData.kitchen"
+            />
             <label class="form-check-label" for="kitchen6">Japán</label>
           </div>
         </div>
@@ -91,27 +140,92 @@
         <legend>Étrend:</legend>
         <div class="grid">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="diet1" value="1" />
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="diet1"
+              value="1"
+              v-model="moreData.diet"
+            />
             <label class="form-check-label" for="diet1">Szimpla</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="diet2" value="2" />
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="diet2"
+              value="2"
+              v-model="moreData.diet"
+            />
             <label class="form-check-label" for="diet2">Vegán</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="diet3" value="3" />
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="diet3"
+              value="3"
+              v-model="moreData.diet"
+            />
             <label class="form-check-label" for="diet3">Vegetáriánus</label>
           </div>
         </div>
       </fieldset>
     </div>
     <div class="btn-container">
-      <button type="submit" class="btn btn-primary">Tovább</button>
+      <button type="button" class="btn btn-primary" @click="tryRegistrate()">
+        Tovább
+      </button>
     </div>
   </form>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import Axios from "../stores/dataService";
+let error = ref(false);
+
+const props = defineProps(["data"]);
+// console.log(props.data);
+
+const moreData = ref({
+  diabetes: 0,
+  allergy: [],
+  intolerance: [],
+  kitchen: [],
+  diet: [],
+});
+
+function tryRegistrate(params) {
+  let registData = Object.assign(props.data, moreData.value);
+  if (
+    registData.name != "" &&
+    registData.email != "" &&
+    registData.password != "" &&
+    registData.geolocation != "" &&
+    registData.diet != "" &&
+    registData.cuisinePreference != "" &&
+    registData.diabetes != "" &&
+    registData.foodIntolerance != "" &&
+    registData.foodAllergy != ""
+  ) {
+    error.value = false;
+    //POST
+    Axios.post("/user-signup", registData.value)
+      .then(() => {
+        error.value = false;
+        console.log("ok");
+      })
+      .catch(() => {
+        error.value = true;
+        console.log("hiba :c");
+      });
+  } else {
+    error.value = true;
+  }
+  console.log(registData);
+}
+</script>
 
 <style lang="css" scoped>
 .btn-container {

@@ -32,7 +32,6 @@
 
 <script setup>
 import { ref } from "vue";
-import { storeToRefs } from "pinia";
 import Axios from "../../stores/dataService";
 let error = ref(false);
 let loginData = ref({

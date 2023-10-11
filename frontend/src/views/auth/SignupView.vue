@@ -59,7 +59,7 @@
     </form>
   </div>
   <div class="more-data-grid">
-    <FoodSaverProfileComponent v-if="signupData.userType == 1" />
+    <FoodSaverProfileComponent v-if="signupData.userType == 1" :data="signupData" />
     <!-- <FoodAdvertiserSignupComponent v-if="signupData.userType == 2" /> -->
     <FoodAdvertiserSignupComponent v-if="signupData.userType == 3" />
   </div>
