@@ -4,19 +4,23 @@
     <div class="simple">
       <div class="mb-3">
         <label for="name" class="form-label main">Név</label>
-        <input type="text" class="form-control" id="name" :disabled="isDisabled" />
-      </div>
-      <div class="mb-3">
-        <label for="companyName" class="form-label main">Felhasználó típus</label>
-        <select class="form-select" aria-label="Default select" :disabled="isDisabled">
-          <option selected value="1">Ételmentő</option>
-          <option value="2">Jótékonysági szervezet</option>
-          <option value="3">Étel felajánló (cég)</option>
-        </select>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          v-model="felhasznalo.nev"
+          :disabled="isDisabled"
+        />
       </div>
       <div class="mb-3">
         <label for="email" class="form-label main">Email cím</label>
-        <input type="email" class="form-control" id="email" :disabled="isDisabled" />
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          v-model="felhasznalo.emailCim"
+          :disabled="isDisabled"
+        />
       </div>
       <div class="mb-3">
         <label for="password" class="form-label main">Jelszó</label>
@@ -24,6 +28,7 @@
           type="password"
           class="form-control"
           id="password"
+          v-model="felhasznalo.jelszo"
           :disabled="isDisabled"
         />
       </div>
@@ -34,6 +39,7 @@
           placeholder="Szélesség"
           class="form-control mb-2"
           id="latitude"
+          v-model="felhasznalo.latitude"
           :disabled="isDisabled"
         />
         <input
@@ -41,15 +47,21 @@
           placeholder="Hosszúság"
           class="form-control mt-2"
           id="longitude"
+          v-model="felhasznalo.longitude"
           :disabled="isDisabled"
         />
       </div>
     </div>
     <div class="btn-container">
-      <button type="button" class="btn btn-primary me-3" @click="isDisabled = false">
-        Adatok frissítése
+      <button type="button" class="btn btn-primary me-3" @click="edit()">
+        Adatok szerkesztése
       </button>
-      <button type="button" class="btn btn-primary ms-3" :disabled="isDisabled">
+      <button
+        type="button"
+        class="btn btn-primary ms-3"
+        @click="save()"
+        :disabled="isDisabled"
+      >
         Mentés
       </button>
     </div>
@@ -57,7 +69,30 @@
 </template>
 
 <script setup>
-let isDisabled = true;
+import { ref } from "vue";
+let isDisabled = ref(true);
+let felhasznalo = ref({
+  nev: "Dávid",
+  emailCim: "asd@gmail.com",
+  jelszo: "Jelszo123",
+  longitude: 47.0001,
+  latitude: 18.6661,
+});
+
+function edit() {
+  isDisabled.value = false;
+}
+
+function save() {
+  isDisabled.value = true;
+  if (
+    felhasznalo.value.nev &&
+    felhasznalo.value.latitude &&
+    felhasznalo.value.longitude
+  ) {
+    console.log(felhasznalo);
+  }
+}
 </script>
 
 <style lang="css" scoped>
