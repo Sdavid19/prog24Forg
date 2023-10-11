@@ -35,17 +35,19 @@
       </thead>
       <tbody>
         <tr v-for="foodSaver in foodsavers">
-          <td>{{ foodSaver.name }}</td>
-          <td>{{ foodSaver.birthPlace }}</td>
-          <td>{{ foodSaver.birthDate }}</td>
-          <td>{{ foodSaver.diabetes }}</td>
+          <td>{{ foodSaver.nev }}</td>
+          <td>{{ foodSaver.szuletesiHely }}</td>
+          <td>{{ foodSaver.szuletesiDatum }}</td>
+          <td>{{ foodSaver.diabetesz ? foodSaver.diabetesz : 0 }}</td>
           <td>
-            <span v-for="allergy in foodSaver.allergies">{{ allergy }}&nbsp;</span>
+            <span>{{ foodSaver.mogyoroAllergia ? "Mogyoro" : "" }}&nbsp;</span>
+            <span>{{ foodSaver.halAllergia ? "Hal" : "" }}&nbsp;</span>
+            <span>{{ foodSaver.szojaAllergia ? "Szója" : "" }}&nbsp;</span>
+            <span>{{ foodSaver.tojasAllergia ? "Tojás" : "" }}&nbsp;</span>
           </td>
           <td>
-            <span v-for="intolarence in foodSaver.intolarences"
-              >{{ intolarence }}&nbsp;</span
-            >
+            <span>{{ foodSaver.laktozErzekenyseg ? "Laktóz" : "" }}&nbsp;</span>
+            <span>{{ foodSaver.glutenErzekeny ? "Glutén" : "" }}&nbsp;</span>
           </td>
         </tr>
       </tbody>
@@ -126,14 +128,27 @@ import { ref } from "vue";
 import Axios from "../../stores/dataService";
 
 let foodSaverData = ref({
-  name: "",
-  birthPlace: "",
-  birthDate: "",
-  diabetes: 0,
-  allergies: [],
-  intolarences: [],
+  nev: "",
+  emailCim: "",
   longitude: 0,
   latitude: 0,
+  szuletesiDatum: "",
+  szuletesiHely: "",
+  diabetesz: 0,
+  mogyoroAllergia: false,
+  halAllergia: false,
+  tojasAllergia: false,
+  laktozErzekenyseg: false,
+  glutenErzekeny: false,
+  olaszKonyha: false,
+  gorogKonyha: false,
+  amerikaiKonyha: false,
+  mexikoiKonyha: false,
+  magyarKonyha: false,
+  japaKonyha: false,
+  szimplaEtrend: false,
+  vegetarianusEtrend: false,
+  veganEtrend: false,
 });
 
 let foodsavers = ref([]);
@@ -175,18 +190,35 @@ async function formatCsv(content) {
         for (let index = 4; index <= 7; index++) {
           dataAllergies.push(data[index]);
         }
-        let geolocation = await getLocation(dataPlace);
+        // let geolocation = await getLocation(dataPlace);
         let dataIntolerances = [data[8], data[9]];
         if (dataName && dataPlace && dataDate) {
           foodSaverData.value = {
             nev: dataName,
-            birthPlace: dataPlace,
-            birthDate: dataDate,
-            diabetes: Number(dataDiabetes),
-            allergies: format(dataAllergies),
-            intolarences: format(dataIntolerances),
-            longitude: geolocation.longitude,
-            latitude: geolocation.latitude,
+            emailCim: "",
+            jelszo: "",
+            // longitude: geolocation.longitude,
+            // latitude: geolocation.latitude,
+            longitude: 0,
+            latitude: 0,
+            szuletesiDatum: dataDate,
+            szuletesiHely: dataPlace,
+            diabetesz: Number(dataDiabetes),
+            mogyoroAllergia: dataAllergies[0] === "X",
+            halAllergia: dataAllergies[1] === "X",
+            szojaAllergia: dataAllergies[2] === "X",
+            tojasAllergia: dataAllergies[3] === "X",
+            laktozErzekenyseg: dataIntolerances[0] === "X",
+            glutenErzekeny: dataIntolerances[1] === "X",
+            olaszKonyha: false,
+            gorogKonyha: false,
+            amerikaiKonyha: false,
+            mexikoiKonyha: false,
+            magyarKonyha: false,
+            japaKonyha: false,
+            szimplaEtrend: false,
+            vegetarianusEtrend: false,
+            veganEtrend: false,
           };
         } else {
           error.value = true;

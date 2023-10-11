@@ -158,7 +158,6 @@ fieldset {
   border: 2px solid rgba(0, 0, 0, 0.1) !important;
   border-radius: 5px;
 }
-
 .main,
 legend {
   font-size: 20px;

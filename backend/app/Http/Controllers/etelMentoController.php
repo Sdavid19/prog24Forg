@@ -29,6 +29,7 @@ class etelMentoController extends Controller
                 'mogyoroAllergia' => $request->input('mogyoroAllergia'),
                 'halAllergia' => $request->input('halAllergia'),
                 'tojasAllergia' => $request->input('tojasAllergia'),
+                'szojaAllergia' => $request->input('szojaAllergia'),
                 'laktozErzekenyseg' => $request->input('laktozErzekenyseg'),
                 'glutenErzekenyseg' => $request->input('glutenErzekenyseg'),
                 'olaszKonyha' => $request->input('olaszKonyha'),

@@ -24,9 +24,15 @@ class etelFelajanloController extends Controller
                 'nev' => $request->input('name'),
                 'emailCim' => $request->input('email'),
                 'jelszo' => $request->input('password'),
-                'geolokaciosCim' => $request->input('geolocation'),
+                'longitude' => $request->input('longitude'),
+                'latitude' => $request->input('latitude'),
                 'letesitmenyFajta' => $request->input('establishment'),
-                'konyhaJelleg' => $request->input('cuisine')
+                'olaszKonyha' => $request->input('olaszKonyha'),
+                'gorogKonyha' => $request->input('gorogKonyha'),
+                'amerikaiKonyha' => $request->input('amerikaiKonyha'),
+                'mexikoiKonyha' => $request->input('mexikoiKonyha'),
+                'magyarKonyha' => $request->input('magyarKonyha'),
+                'japanKonyha' => $request->input('japanKonyha')
             ]);
             return response()->json(['message'=>'ok '], 200);
             /*Auth::login($etelFelajanlo);
