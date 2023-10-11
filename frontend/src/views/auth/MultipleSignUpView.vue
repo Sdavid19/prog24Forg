@@ -132,10 +132,8 @@ let foodSaverData = ref({
   diabetes: 0,
   allergies: [],
   intolarences: [],
-  geolocation: {
-    longitude: 0,
-    latitude: 0,
-  },
+  longitude: 0,
+  latitude: 0,
 });
 
 let foodsavers = ref([]);
@@ -177,20 +175,18 @@ async function formatCsv(content) {
         for (let index = 4; index <= 7; index++) {
           dataAllergies.push(data[index]);
         }
+        let geolocation = await getLocation(dataPlace);
         let dataIntolerances = [data[8], data[9]];
         if (dataName && dataPlace && dataDate) {
           foodSaverData.value = {
-            name: dataName,
+            nev: dataName,
             birthPlace: dataPlace,
             birthDate: dataDate,
             diabetes: Number(dataDiabetes),
             allergies: format(dataAllergies),
             intolarences: format(dataIntolerances),
-            //geolocation: await getLocation(dataPlace),
-            geolocation: {
-              longitude: 0,
-              latitude: 0,
-            },
+            longitude: geolocation.longitude,
+            latitude: geolocation.latitude,
           };
         } else {
           error.value = true;
@@ -250,7 +246,7 @@ async function getLocation(city) {
 
   let data = response.data[0];
   console.log(data);
-  return { longitude: data.longitude, latitude: data.latitude };
+  return data;
 }
 </script>
 
