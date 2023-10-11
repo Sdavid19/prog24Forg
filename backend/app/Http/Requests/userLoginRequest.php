@@ -21,9 +21,9 @@ class userLoginRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        return [/*
             'email' => 'required|exists:etelMento,emailCim',
-            'password' => 'required'
+            'password' => 'required'*/
         ];
     }
 }
