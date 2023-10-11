@@ -23,8 +23,8 @@ class registrationAdvertiserRequest extends FormRequest
     {
         return [
             'name' => 'required|max:100',
-            'email' => 'required|unique|max:100|email',
-            'password' => 'required|min:8|max:100|password',
+            'email' => 'required|max:100|email',
+            'password' => 'required|min:8|max:100',
             'geolocation' => 'required|max:50',
             'establishment' => 'required',
             'cuisine' => 'required'

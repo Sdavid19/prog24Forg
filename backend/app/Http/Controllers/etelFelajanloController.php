@@ -7,7 +7,7 @@ use App\Http\Requests\advertiserPatchRequest;
 use App\Http\Requests\registrationAdvertiserRequest;
 use App\Models\etelFelajanlo;
 use Exception;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
 class etelFelajanloController extends Controller
@@ -28,11 +28,11 @@ class etelFelajanloController extends Controller
                 'letesitmenyFajta' => $request->input('establishment'),
                 'konyhaJelleg' => $request->input('cuisine')
             ]);
-
-            Auth::login($etelFelajanlo);
+            return response()->json(['message'=>'ok '], 200);
+            /*Auth::login($etelFelajanlo);
             {
                 return redirect()->route('user.profil');
-            }
+            }*/
         } catch (Exception $e) {
             return redirect()->back()->with('errors', 'A regisztráció sikertelen! Kérjük próbálja újra később.')->setStatusCode(422);
         }
@@ -54,22 +54,59 @@ class etelFelajanloController extends Controller
         }
     }
 
+    /*public function authenticate(Request $request): RedirectResponse
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('dashboard', 200);
+        }
+
+        return back()->withErrors([
+            'email' => 'Az ön által szolgáltatott adatok nem egyeznek a rekordjainkkal.',
+        ])->onlyInput('email');
+    }*/
+
     public function loginRequest(advertiserLoginRequest $request)
     {
         session()->flush();
 
-        $name = $request->input('name', null);
+        $email = $request->input('email', null);
         $password = $request->input('password', null);
 
-        $user = etelFelajanlo::all()->firstWhere('nev', '=', $name);
+        $user = etelFelajanlo::all()->firstWhere('emailCim', '=', $email);
         if (!$user || !($user->jelszo == $password)) {
             return response()->json([
                 'success' => false,
                 'message' => 'Az ön által megadott adatok nem helyesek!'
             ], 400);
         }
-        Auth::login($user);
+        Auth::guard('etel_felajanlo')->loginUsingId($user->id);
+        
 
-        return response()->json(Auth::user(), 200);
+        /*
+        $credentials = $request->validate([
+            'emailCim' => ['email'],
+            'password' => [],
+        ]);
+        
+
+        if (Auth::guard('etel_felajanlo')->attempt($credentials)) {
+            $request->session()->regenerate();
+
+            error_log('you are validated :D');
+            return redirect()->intended();
+        }
+
+        return back()->withErrors([
+            'email' => 'Az ön által szolgáltatott adatok nem egyeznek a rekordjainkkal.',
+        ])->onlyInput('email');
+        */
     }
+    
 }

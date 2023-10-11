@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class etelFelajanlo extends Model
+class etelFelajanlo extends Authenticatable
 {
     use HasFactory;
     protected $table = 'etel_felajanlo';
-    protected $primaryKey = 'ID';
+    protected $primaryKey = 'id';
     public $timestamps = false;
 
     protected $fillable = [
