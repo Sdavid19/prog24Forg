@@ -39,14 +39,14 @@
           placeholder="Szélesség"
           class="form-control mb-2"
           id="latitude"
-          v-model="signupData.geoLocation.latitude"
+          v-model="signupData.latitude"
         />
         <input
           type="number"
           placeholder="Hosszúság"
           class="form-control mt-2"
           id="longitude"
-          v-model="signupData.geoLocation.longitude"
+          v-model="signupData.longitude"
         />
       </div>
       <div>
@@ -70,6 +70,7 @@
 import FoodSaverProfileComponent from "../../components/FoodSaverSignupComponent.vue";
 import FoodAdvertiserSignupComponent from "../../components/FoodAdvertiserSignupComponent.vue";
 import { ref } from "vue";
+import Axios from "../../stores/dataService";
 
 let error = ref(false);
 
@@ -95,11 +96,19 @@ function trySignUp() {
     signupData.value.name &&
     signupData.value.userType &&
     signupData.value.email &&
-    signupData.value.geoLocation.latitude &&
-    signupData.value.geoLocation.longitude
+    signupData.value.latitude &&
+    signupData.value.longitude
   ) {
     error.value = false;
-    //POST
+    Axios.post("/user-signup", signupData.value)
+      .then(() => {
+        error.value = false;
+        console.log("belép");
+      })
+      .catch(() => {
+        error.value = true;
+        console.log("hiba");
+      });
     document.getElementsByClassName("more-data-grid")[0].scrollIntoView();
     console.log(signupData.value);
   } else {
