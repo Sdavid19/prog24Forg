@@ -132,7 +132,7 @@
               type="checkbox"
               id="cuisinePreference6"
               value="6"
-              v-model="registData.japaKonyha"
+              v-model="registData.japanKonyha"
             />
             <label class="form-check-label" for="cuisinePreference6">Japán</label>
           </div>
@@ -210,13 +210,14 @@ let registData = ref({
   halAllergia: false,
   tojasAllergia: false,
   laktozErzekenyseg: false,
+  szojaAllergia: false,
   glutenErzekeny: false,
   olaszKonyha: false,
   gorogKonyha: false,
   amerikaiKonyha: false,
   mexikoiKonyha: false,
   magyarKonyha: false,
-  japaKonyha: false,
+  japanKonyha: false,
   szimplaEtrend: false,
   vegetarianusEtrend: false,
   veganEtrend: false,
@@ -224,16 +225,17 @@ let registData = ref({
 
 function tryRegistrate() {
   if (props.data.name != "" && props.data.email != "" && props.data.password != "") {
-    console.log(registData);
+    console.log(registData.value);
     //POST
-    Axios.post("/user-signup", registData)
+    Axios.post("/user-signup", registData.value)
       .then(() => {
         error.value = false;
         console.log("ok");
       })
-      .catch(() => {
+      .catch((e) => {
         error.value = true;
         console.log("hiba");
+        console.log(e);
       });
   } else {
     error.value = true;
