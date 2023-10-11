@@ -190,17 +190,17 @@ async function formatCsv(content) {
         for (let index = 4; index <= 7; index++) {
           dataAllergies.push(data[index]);
         }
-        // let geolocation = await getLocation(dataPlace);
+        let geolocation = await getLocation(dataPlace);
         let dataIntolerances = [data[8], data[9]];
         if (dataName && dataPlace && dataDate) {
           foodSaverData.value = {
             nev: dataName,
             emailCim: "",
             jelszo: "",
-            // longitude: geolocation.longitude,
-            // latitude: geolocation.latitude,
-            longitude: 0,
-            latitude: 0,
+            longitude: geolocation.longitude,
+            latitude: geolocation.latitude,
+            // longitude: 0,
+            // latitude: 0,
             szuletesiDatum: dataDate,
             szuletesiHely: dataPlace,
             diabetesz: Number(dataDiabetes),
