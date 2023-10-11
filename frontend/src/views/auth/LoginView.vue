@@ -18,13 +18,18 @@
 
       <div>
         <p class="text-center text-danger" :class="error ? '' : ' no-error'">
-          Kérem töltsön ki minden mezőt!
+          Kérem töltsön ki minden mezőt helyesen!
         </p>
       </div>
       <div class="btn-container">
         <button type="button" class="btn btn-primary" @click="tryLogin()">
           Bejelentkezés
         </button>
+      </div>
+      <div>
+        <p class="text-center text-success" :class="loggedIn ? '' : 'not-logged-in'">
+          Sikeres bejelentkezés
+        </p>
       </div>
     </form>
   </div>
@@ -34,9 +39,10 @@
 import { ref } from "vue";
 import Axios from "../../stores/dataService";
 let error = ref(false);
+let loggedIn= ref(false);
 let loginData = ref({
-  email: "",
-  password: "",
+    email: "",
+    password: "",
 });
 
 function tryLogin() {
@@ -76,6 +82,9 @@ form {
   justify-content: center;
 }
 .no-error {
+  visibility: hidden;
+}
+.not-logged-in {
   visibility: hidden;
 }
 </style>

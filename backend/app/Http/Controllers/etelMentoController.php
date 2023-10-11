@@ -42,13 +42,13 @@ class etelMentoController extends Controller
                 'vegetarianusEtrend' => $request->input('vegetarianusEtrend'),
                 'veganEtrend' => $request->input('veganEtrend')
             ]);
-            return response()->json(['message'=>$etelMento], 200);
+            return response()->json(['message' => $etelMento], 200);
             // Auth::login($etelMento);
             // {
             //     return redirect()->route('user.profil');
             // }
         } catch (Exception $e) {
-            return response()->json(['message'=>$e], 400);
+            return response()->json(['message' => $e], 400);
             return redirect()->back()->with('errors', 'A regisztráció sikertelen! Kérjük próbálja újra később.')->setStatusCode(422);
         }
     }
@@ -59,31 +59,35 @@ class etelMentoController extends Controller
             if (etelMento::find($id)->exists()) {
                 $etelMento = etelMento::find($id);
                 $etelMento->update($request->all());
-                
-                return response()->json(['message'=>'Adatai frissítve lettek, id: '.$id], 200);
-            }
-            else {
-                return response()->json(['message'=>'Nem találtuk a felhasználót, id: '.$id], 404);
+
+                return response()->json(['message' => 'Adatai frissítve lettek, id: ' . $id], 200);
+            } else {
+                return response()->json(['message' => 'Nem találtuk a felhasználót, id: ' . $id], 404);
             }
         } catch (Exception $e) {
-            return response()->json(['message'=>'Adatbázis hiba'], 400);
+            return response()->json(['message' => 'Adatbázis hiba'], 400);
         }
     }
 
     public function loginRequest(userLoginRequest $request)
     {
-        session()->flush();
+        try {
+            session()->flush();
 
-        $email = $request->input('email', null);
-        $password = $request->input('password', null);
+            $email = $request->input('email');
+            $password = $request->input('password');
 
-        $user = etelMento::all()->firstWhere('emailCim', '=', $email);
-        if (!$user || !($user->jelszo == $password)) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Az ön által megadott adatok nem helyesek!'
-            ], 400);
+            $user = etelMento::all()->firstWhere('emailCim', '=', $email)->get();
+            if (!$user || !($user->jelszo == $password)) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Az ön által megadott adatok nem helyesek!'
+                ], 400);
+            }
+            Auth::guard('etelmento')->loginUsingId($user->id);
+            return redirect()->route('/profile');
+        } catch (Exception $e) {
+            return response()->json(['message' => $e], 400);
         }
-        Auth::guard('etelmento')->loginUsingId($user->id);
     }
 }
