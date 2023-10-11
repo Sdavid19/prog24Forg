@@ -18,17 +18,22 @@ class etelMentoController extends Controller
     }
     public function store(registrationUserRequest $request)
     {
+        $foodAllergy = implode($request->input('allergies'));
+        $dietary = implode($request->input('diet'));
+        $cuisinePreference = implode($request->input('preferences'));
+        $foodIntolerance = implode($request->input('intolerances'));
+
         try {
             $etelMento =  etelMento::create([
                 'nev' => $request->input('name'),
                 'emailCim' => $request->input('email'),
                 'jelszo' => $request->input('password'),
                 'geolokaciosCim' => $request->input('geolocation'),
-                'etrend' => $request->input('diet'),
-                'konyhaPreferencia' => $request->input('cuisinePreference'),
+                'etrend' => ($dietary),
+                'konyhaPreferencia' => ($cuisinePreference),
                 'diabetesz' => $request->input('diabetes'),
-                'etelIntolerancia' => $request->input('foodIntolerance'),
-                'etelAllergia' => $request->input('foodAllergy')
+                'etelIntolerancia' => ($foodIntolerance),
+                'etelAllergia' => ($foodAllergy)
             ]);
             return response()->json(['message'=>'ok '], 200);
             // Auth::login($etelMento);
