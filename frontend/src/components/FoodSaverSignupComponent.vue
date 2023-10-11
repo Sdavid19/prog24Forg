@@ -202,11 +202,11 @@ function tryRegistrate() {
     props.data.email != "" &&
     props.data.password != "" &&
     props.data.geolocation != "" &&
-    moreData.diabetes !== "" &&
-    moreData.allergies != "" &&
-    moreData.intolerances != "" &&
-    moreData.cuisinePreference != "" &&
-    moreData.diet != ""
+    moreData.value.diabetes !== "" &&
+    moreData.value.allergies != "" &&
+    moreData.value.intolerances != "" &&
+    moreData.value.cuisinePreference != "" &&
+    moreData.value.diet != ""
   ) {
     let registData = {
       name: props.data.name,
@@ -216,7 +216,7 @@ function tryRegistrate() {
       longitude: 10,
       diabetes: 0,
 
-      mogyoroAlergia: moreData.allergies.includes("1"),
+      mogyoroAlergia: moreData.allergies.includes("1")==true?true:false,
       halAlergia: moreData.allergies.includes("2"),
       tojasAlergia: moreData.allergies.includes("3"),
 
@@ -230,8 +230,22 @@ function tryRegistrate() {
       magyarKonyha: moreData.cuisinePreference.includes("5"),
       japanKonyha: moreData.cuisinePreference.includes("6"),
     };
+    // let registData = {
+    //   name: props.data.name,
+    //   email: props.data.email,
+    //   password: props.data.password,
+    //   latitude: 10,
+    //   longitude: 10,
+    //   diabetes: moreData.value.diabetes,
+    //   allergies: moreData.value.allergies,
+    //   intolerances: moreData.value.intolerances,
+    //   cuisinePreference: moreData.value.cuisinePreference,
+    //   diet: moreData.value.diet,
+    // };
+    // const ready = JSON.stringify(registData);
+    console.log(registData);
     //POST
-    Axios.post("/user-signup", registData.value)
+    Axios.post("/user-signup", registData)
       .then(() => {
         error.value = false;
         console.log("ok");
