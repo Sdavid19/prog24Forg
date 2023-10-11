@@ -14,27 +14,13 @@ class etelFelajanlas extends Model
 
     protected $fillable = [
         'nev',
-        'mennyiseg',
-        'mertekegyseg',
-        'diabetesz',
         'mogyoroAllergia',
         'halAllergia',
         'tojasAllergia',
         'szojaAllergia',
-        'laktozErzekenyseg',
-        'glutenErzekenyseg',
-        'olaszKonyha',
-        'gorogKonyha',
-        'amerikaiKonyha',
-        'mexikoiKonyha',
-        'magyarKonyha',
-        'japanKonyha',
-        'tejTermek',
-        'pekaru',
-        'melegitendo',
+        'cousine',
+        'típus',
         'helybenFogyaszthato',
-        'lejaratiIdo',
-        'kepUrl',
-        'konyhaTipus'
+        'lejaratiDatum'
     ];
 }
