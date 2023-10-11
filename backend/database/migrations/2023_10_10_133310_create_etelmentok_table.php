@@ -20,21 +20,21 @@ return new class extends Migration
             $table->double('latitude', 50);
             $table->string('szuletesiHely')->nullable();
             $table->date('szuletesiDatum')->nullable();
-            $table->boolean('mogyoroAllergia');
-            $table->boolean('halAllergia');
-            $table->boolean('tojasAllergia');
-            $table->boolean('szojaAllergia');
-            $table->boolean('laktozErzekenyseg');
-            $table->boolean('glutenErzekenyseg');
-            $table->boolean('olaszKonyha');
-            $table->boolean('gorogKonyha');
-            $table->boolean('amerikaiKonyha');
-            $table->boolean('mexikoiKonyha');
-            $table->boolean('magyarKonyha');
-            $table->boolean('japanKonyha');
-            $table->boolean('szimplaEtrend');
-            $table->boolean('vegetarianusEtrend');
-            $table->boolean('veganEtrend');
+            $table->boolean('mogyoroAllergia')->nullable();
+            $table->boolean('halAllergia')->nullable();
+            $table->boolean('tojasAllergia')->nullable();
+            $table->boolean('szojaAllergia')->nullable();
+            $table->boolean('laktozErzekenyseg')->nullable();
+            $table->boolean('glutenErzekenyseg')->nullable();
+            $table->boolean('olaszKonyha')->nullable();
+            $table->boolean('gorogKonyha')->nullable();
+            $table->boolean('amerikaiKonyha')->nullable();
+            $table->boolean('mexikoiKonyha')->nullable();
+            $table->boolean('magyarKonyha')->nullable();
+            $table->boolean('japanKonyha')->nullable();
+            $table->boolean('szimplaEtrend')->nullable();
+            $table->boolean('vegetarianusEtrend')->nullable();
+            $table->boolean('veganEtrend')->nullable();
             $table->integer('diabetesz')->nullable();
 
 
