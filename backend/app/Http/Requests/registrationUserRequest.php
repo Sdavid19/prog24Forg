@@ -23,15 +23,15 @@ class registrationUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100',
+            /*'name' => 'required|max:100',
             'email' => 'required|max:100|email',
             'password' => 'required|min:8|max:100',
-            'geolocation' => 'required|max:50',
+            'geolocation' => 'required',
             'diet' => 'required',
             'cuisine' => 'required',
             'diabetes' => 'required',
-            'foodIntolerance' => 'required|max:50',
-            'foodAllergy' => 'required'
+            'foodIntolerance' => 'required',
+            'foodAllergy' => 'required'*/
 
         ];
     }

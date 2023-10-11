@@ -1,12 +1,11 @@
 <template>
   <div class="signup-grid">
-    <FoodAdvertiserSignupComponent />
+    <BasicProfileComponenet />
   </div>
 </template>
 
 <script setup>
-import FoodSaverSignupComponent from "../components/FoodSaverSignupComponent.vue";
-import FoodAdvertiserSignupComponent from "../components/foodadvertisersignupcomponent.vue";
+import BasicProfileComponenet from "../components/BasicProfileComponenet.vue";
 </script>
 
 <style lang="css" scoped>
