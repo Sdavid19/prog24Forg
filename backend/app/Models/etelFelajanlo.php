@@ -16,8 +16,14 @@ class etelFelajanlo extends Authenticatable
         'nev',
         'emailCim',
         'jelszo',
-        'geolokaciosCim',
+        'longitude',
+        'latitude',
         'letesitmenyFajta',
-        'konyhaJelleg'
+        'olaszKonyha',
+        'gorogKonyha',
+        'amerikaiKonyha',
+        'mexikoiKonyha',
+        'magyarKonyha',
+        'japanKonyha'
     ];
 }

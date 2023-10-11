@@ -17,6 +17,7 @@ class jotekonysagiSzervezet extends Authenticatable
         'nev',
         'emailCim',
         'jelszo',
-        'geolokaciosCim'
+        'longitude',
+        'latitude'
     ];
 }
