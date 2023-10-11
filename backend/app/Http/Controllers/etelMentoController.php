@@ -23,15 +23,15 @@ class etelMentoController extends Controller
                 'nev' => $request->input('name'),
                 'emailCim' => $request->input('email'),
                 'jelszo' => $request->input('password'),
+                'diabetesz' => $request->input('diabetes'),
                 'longitude' => $request->input('longitude'),
                 'latitude' => $request->input('latitude'),
-                'diabetesz' => $request->input('diabetes'),
                 'mogyoroAllergia' => $request->input('mogyoroAllergia'),
                 'halAllergia' => $request->input('halAllergia'),
                 'tojasAllergia' => $request->input('tojasAllergia'),
-                'szojaAllergia' => $request->input('szojaAllergia'),
                 'laktozErzekenyseg' => $request->input('laktozErzekenyseg'),
-                'glutenErzekenyseg' => $request->input('glutenErzekenyseg'),
+                'szojaAllergia' => $request->input('szojaAllergia'),
+                'glutenErzekenyseg' => $request->input('glutenErzekeny'),
                 'olaszKonyha' => $request->input('olaszKonyha'),
                 'gorogKonyha' => $request->input('gorogKonyha'),
                 'amerikaiKonyha' => $request->input('amerikaiKonyha'),
@@ -42,12 +42,13 @@ class etelMentoController extends Controller
                 'vegetarianusEtrend' => $request->input('vegetarianusEtrend'),
                 'veganEtrend' => $request->input('veganEtrend')
             ]);
-            return response()->json(['message'=>'ok '], 200);
+            return response()->json(['message'=>$etelMento], 200);
             // Auth::login($etelMento);
             // {
             //     return redirect()->route('user.profil');
             // }
         } catch (Exception $e) {
+            return response()->json(['message'=>$e], 400);
             return redirect()->back()->with('errors', 'A regisztráció sikertelen! Kérjük próbálja újra később.')->setStatusCode(422);
         }
     }

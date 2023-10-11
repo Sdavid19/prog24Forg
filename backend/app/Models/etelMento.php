@@ -17,11 +17,23 @@ class etelMento extends Authenticatable
         'nev',
         'emailCim',
         'jelszo',
-        'geolokaciosCim',
-        'etrend',
-        'konyhaPreferencia',
         'diabetesz',
-        'etelIntolerancia',
-        'etelAllergia'
+        'longitude',
+        'latitude',
+        'mogyoroAllergia',
+        'halAllergia',
+        'tojasAllergia',
+        'laktozErzekenyseg',
+        'szojaAllergia',
+        'glutenErzekenyseg',
+        'olaszKonyha',
+        'gorogKonyha',
+        'amerikaiKonyha',
+        'mexikoiKonyha',
+        'magyarKonyha',
+        'japanKonyha',
+        'szimplaEtrend',
+        'vegetarianusEtrend',
+        'veganEtrend'
     ];
 }
