@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\etelFelajanlas;
-use Illuminate\Http\foodRequest;
+use App\Http\Requests\foodRequest;
 
 class etelFelajanlasController extends Controller
 {
@@ -32,9 +33,9 @@ class etelFelajanlasController extends Controller
                 'mexikoiKonyha' => $request->input('mexikoiKonyha'),
                 'magyarKonyha' => $request->input('magyarKonyha'),
                 'japanKonyha' => $request->input('japanKonyha')
-            ])
-        } catch (\Throwable $th) {
-            //throw $th;
+            ]);
+        } catch (Exception $e) {
+            return response()->json(['message'=>$e], 400);
         }
     }
 }
