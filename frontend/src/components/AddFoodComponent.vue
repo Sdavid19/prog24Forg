@@ -38,7 +38,7 @@
               id="allergie1"
               name="mogyoro"
               value="1"
-              v-model="foodData.allergies"
+              v-model="foodData.mogyoroAllergia"
             />
             <label class="form-check-label" for="allergie1">Mogyoró</label>
           </div>
@@ -49,7 +49,7 @@
               id="allergie2"
               name="hal"
               value="2"
-              v-model="foodData.allergies"
+              v-model="foodData.halAllergia"
             />
             <label class="form-check-label" for="allergie2">Hal</label>
           </div>
@@ -60,7 +60,7 @@
               id="allergie3"
               name="szoja"
               value="3"
-              v-model="foodData.allergies"
+              v-model="foodData.szojaAllergia"
             />
             <label class="form-check-label" for="allergie3">Szója</label>
           </div>
@@ -71,7 +71,7 @@
               id="allergie4"
               name="tojas"
               value="4"
-              v-model="foodData.allergies"
+              v-model="foodData.tojasAllergia"
             />
             <label class="form-check-label" for="allergie4">Tojás</label>
           </div>
@@ -121,10 +121,16 @@
 
 <script setup>
 import { ref } from "vue";
+import Axios from "../stores/dataService";
+let error = ref(false);
+
 const foodData = ref({
   name: "",
   type: 0,
-  allergies: [],
+  mogyoroAllergia: false,
+  halAllergia: false,
+  tojasAllergia: false,
+  szojaAllergia: false,
   expirationDate: "",
   consumption: 0,
   cousine: 0,
@@ -134,14 +140,23 @@ function tryAdddingFood() {
   if (
     foodData.value.nev &&
     foodData.value.foodCategory &&
-    foodData.value.allergies &&
     foodData.value.expirationDate &&
     foodData.value.consumption &&
     foodData.value.cousine
   ) {
-    //POST
     console.log(foodData.value);
+    //POST
+    Axios.post("/create-food", foodData.value)
+      .then(() => {
+        error.value = false;
+        console.log("ok");
+      })
+      .catch(() => {
+        error.value = true;
+        console.log("hiba");
+      });
   } else {
+    error.value = true;
     alert("Tölts ki minden mezőt az étel felajánlásához!");
   }
 }

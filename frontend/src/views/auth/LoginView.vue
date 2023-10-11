@@ -51,7 +51,7 @@ function tryLogin() {
       })
       .catch(() => {
         error.value = true;
-        console.log("hiba :c");
+        console.log("hiba");
       });
   } else {
     error.value = true;

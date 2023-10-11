@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-center">Ételmentés</h1>
+  <h1 class="text-center my-3">Ételmentés</h1>
   <p>
     Alkalmazásunk segítségével megmentjük az amúgy elpocsékolás sorsára jutó ételetek. Az
     ételfelajánlás bárkitől érkezhet, ne maradj le te se!
