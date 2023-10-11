@@ -104,20 +104,13 @@ let registData = ref({
   longitude: 0,
   latitude: 0,
 
-  mogyoroAllergia: false,
-  halAllergia: false,
-  tojasAllergia: false,
-  laktozErzekenyseg: false,
-  glutenErzekeny: false,
+  letesitmenyFajta: "",
   olaszKonyha: false,
   gorogKonyha: false,
   amerikaiKonyha: false,
   mexikoiKonyha: false,
   magyarKonyha: false,
   japaKonyha: false,
-  szimplaEtrend: false,
-  vegetarianusEtrend: false,
-  veganEtrend: false,
 });
 
 function tryRegistrate() {
