@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nev', 100);
             $table->string('emailCim', 100)->nullable();
-            $table->string('jelszo', 100);
+            $table->string('jelszo', 100)->nullable();
             $table->double('longitude', 50);
             $table->double('latitude', 50);
             $table->string('szuletesiHely')->nullable();
