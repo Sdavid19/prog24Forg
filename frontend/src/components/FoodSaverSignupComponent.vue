@@ -197,18 +197,39 @@ const moreData = ref({
 });
 
 function tryRegistrate() {
-  let registData = Object.assign(props.data, moreData.value);
   if (
-    registData.name != "" &&
-    registData.email != "" &&
-    registData.password != "" &&
-    registData.geolocation != "" &&
-    registData.diabetes !== "" &&
-    registData.allergies != "" &&
-    registData.intolerances != "" &&
-    registData.cuisinePreference != "" &&
-    registData.diet != ""
+    props.data.name != "" &&
+    props.data.email != "" &&
+    props.data.password != "" &&
+    props.data.geolocation != "" &&
+    moreData.diabetes !== "" &&
+    moreData.allergies != "" &&
+    moreData.intolerances != "" &&
+    moreData.cuisinePreference != "" &&
+    moreData.diet != ""
   ) {
+    let registData = {
+      name: props.data.name,
+      email: props.data.email,
+      password: props.data.password,
+      latitude: 10,
+      longitude: 10,
+      diabetes: 0,
+
+      mogyoroAlergia: moreData.allergies.includes("1"),
+      halAlergia: moreData.allergies.includes("2"),
+      tojasAlergia: moreData.allergies.includes("3"),
+
+      laktozErzekenyseg: moreData.intolerances.includes("1"),
+      glutenErzekenyseg: moreData.intolerances.includes("2"),
+
+      olaszKonyha: moreData.cuisinePreference.includes("1"),
+      gorogKonyha: moreData.cuisinePreference.includes("2"),
+      amerikaiKonyha: moreData.cuisinePreference.includes("3"),
+      mexikoiKonyha: moreData.cuisinePreference.includes("4"),
+      magyarKonyha: moreData.cuisinePreference.includes("5"),
+      japanKonyha: moreData.cuisinePreference.includes("6"),
+    };
     //POST
     Axios.post("/user-signup", registData.value)
       .then(() => {
