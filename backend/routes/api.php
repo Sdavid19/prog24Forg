@@ -34,3 +34,4 @@ Route::post('/advertiser-login', [etelFelajanloController::class, 'loginRequest'
 Route::post('/advertiser-modify', [etelFelajanloController::class, 'update']);
 
 Route::post('/create-food', [etelFelajanlasController::class, 'createFood']);
+
