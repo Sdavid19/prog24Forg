@@ -20,7 +20,7 @@
               id="allergie1"
               name="mogyoro"
               value="1"
-              v-model="moreData.allergy"
+              v-model="moreData.allergies"
             />
             <label class="form-check-label" for="allergie1">Mogyoró</label>
           </div>
@@ -31,7 +31,7 @@
               id="allergie2"
               name="hal"
               value="2"
-              v-model="moreData.allergy"
+              v-model="moreData.allergies"
             />
             <label class="form-check-label" for="allergie2">Hal</label>
           </div>
@@ -42,7 +42,7 @@
               id="allergie3"
               name="tojas"
               value="3"
-              v-model="moreData.allergy"
+              v-model="moreData.allergies"
             />
             <label class="form-check-label" for="allergie3">Tojás</label>
           </div>
@@ -56,7 +56,7 @@
               class="form-check-input"
               type="checkbox"
               value="1"
-              v-model="moreData.intolerance"
+              v-model="moreData.foodIntolerance"
             />
             <label class="form-check-label" for="defaultCheck1">Laktóz</label>
           </div>
@@ -65,7 +65,7 @@
               class="form-check-input"
               type="checkbox"
               value="2"
-              v-model="moreData.intolerance"
+              v-model="moreData.foodIntolerance"
             />
             <label class="form-check-label" for="defaultCheck2">Glutén</label>
           </div>
@@ -78,61 +78,61 @@
             <input
               class="form-check-input"
               type="checkbox"
-              id="kitchen1"
+              id="cuisinePreference1"
               value="1"
-              v-model="moreData.kitchen"
+              v-model="moreData.cuisinePreference"
             />
-            <label class="form-check-label" for="kitchen1">Olasz</label>
+            <label class="form-check-label" for="cuisinePreference1">Olasz</label>
           </div>
           <div class="form-check">
             <input
               class="form-check-input"
               type="checkbox"
-              id="kitchen2"
+              id="cuisinePreference2"
               value="2"
-              v-model="moreData.kitchen"
+              v-model="moreData.cuisinePreference"
             />
-            <label class="form-check-label" for="kitchen2">Görög</label>
+            <label class="form-check-label" for="cuisinePreference2">Görög</label>
           </div>
           <div class="form-check">
             <input
               class="form-check-input"
               type="checkbox"
-              id="kitchen3"
+              id="cuisinePreference3"
               value="3"
-              v-model="moreData.kitchen"
+              v-model="moreData.cuisinePreference"
             />
-            <label class="form-check-label" for="kitchen3">Amerikai</label>
+            <label class="form-check-label" for="cuisinePreference3">Amerikai</label>
           </div>
           <div class="form-check">
             <input
               class="form-check-input"
               type="checkbox"
-              id="kitchen4"
+              id="cuisinePreference4"
               value="4"
-              v-model="moreData.kitchen"
+              v-model="moreData.cuisinePreference"
             />
-            <label class="form-check-label" for="kitchen4">Mexikói</label>
+            <label class="form-check-label" for="cuisinePreference4">Mexikói</label>
           </div>
           <div class="form-check">
             <input
               class="form-check-input"
               type="checkbox"
-              id="kitchen5"
+              id="cuisinePreference5"
               value="5"
-              v-model="moreData.kitchen"
+              v-model="moreData.cuisinePreference"
             />
-            <label class="form-check-label" for="kitchen5">Magyar</label>
+            <label class="form-check-label" for="cuisinePreference5">Magyar</label>
           </div>
           <div class="form-check">
             <input
               class="form-check-input"
               type="checkbox"
-              id="kitchen6"
+              id="cuisinePreference6"
               value="6"
-              v-model="moreData.kitchen"
+              v-model="moreData.cuisinePreference"
             />
-            <label class="form-check-label" for="kitchen6">Japán</label>
+            <label class="form-check-label" for="cuisinePreference6">Japán</label>
           </div>
         </div>
       </fieldset>
@@ -190,26 +190,25 @@ const props = defineProps(["data"]);
 
 const moreData = ref({
   diabetes: 0,
-  allergy: [],
-  intolerance: [],
-  kitchen: [],
+  allergies: [],
+  foodIntolerance: [],
+  cuisinePreference: [],
   diet: [],
 });
 
-function tryRegistrate(params) {
+function tryRegistrate() {
   let registData = Object.assign(props.data, moreData.value);
   if (
     registData.name != "" &&
     registData.email != "" &&
     registData.password != "" &&
     registData.geolocation != "" &&
-    registData.diet != "" &&
+    registData.diabetes !== "" &&
+    registData.allergies != "" &&
+    registData.intolerances != "" &&
     registData.cuisinePreference != "" &&
-    registData.diabetes != "" &&
-    registData.foodIntolerance != "" &&
-    registData.foodAllergy != ""
+    registData.diet != ""
   ) {
-    error.value = false;
     //POST
     Axios.post("/user-signup", registData.value)
       .then(() => {
@@ -222,6 +221,7 @@ function tryRegistrate(params) {
       });
   } else {
     error.value = true;
+    console.log("Üres :c");
   }
   console.log(registData);
 }

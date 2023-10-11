@@ -81,8 +81,8 @@ let signupData = ref({
   //     latitude: 0,
   //     longitude: 0,
   //   },
-  name: "a",
   userType: 1,
+  name: "a",
   email: "a",
   password: "a",
   geoLocation: {
