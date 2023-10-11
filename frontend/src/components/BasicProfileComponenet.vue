@@ -8,7 +8,7 @@
           type="text"
           class="form-control"
           id="name"
-          v-model="felhasznaloData.nev"
+          v-model="felhasznaloData.name"
           :disabled="isDisabled"
         />
       </div>
@@ -18,7 +18,7 @@
           type="email"
           class="form-control"
           id="email"
-          v-model="felhasznaloData.emailCim"
+          v-model="felhasznaloData.email"
           :disabled="isDisabled"
         />
       </div>
@@ -28,7 +28,7 @@
           type="password"
           class="form-control"
           id="password"
-          v-model="felhasznaloData.jelszo"
+          v-model="felhasznaloData.password"
           :disabled="isDisabled"
         />
       </div>
@@ -70,12 +70,13 @@
 
 <script setup>
 import { ref } from "vue";
+import Axios from "../stores/dataService";
 let isDisabled = ref(true);
 let error = ref(false);
 let felhasznaloData = ref({
-  nev: "Dávid",
-  emailCim: "asd@gmail.com",
-  jelszo: "Jelszo123",
+  name: "Dávid",
+  email: "asd@gmail.com",
+  password: "Jelszo123",
   longitude: 47.0001,
   latitude: 18.6661,
 });
@@ -86,7 +87,7 @@ function edit() {
 
 function save() {
   if (
-    felhasznaloData.value.nev &&
+    felhasznaloData.value.name &&
     felhasznaloData.value.latitude &&
     felhasznaloData.value.longitude
   ) {
