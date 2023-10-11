@@ -22,10 +22,10 @@
       <div class="mb-3">
         <select class="form-select" v-model="foodData.type">
           <option value="0" disabled>Válassz típust</option>
-          <option value="1">Melegítendő</option>
-          <option value="2">Hideg</option>
-          <option value="3">Rövidlejáratú</option>
-          <option value="4">Pékáru</option>
+          <option value="Melegítendő">Melegítendő</option>
+          <option value="Hideg">Hideg</option>
+          <option value="Rövidlejáratú">Rövidlejáratú</option>
+          <option value="Pékáru">Pékáru</option>
         </select>
       </div>
       <fieldset class="mb-3">
@@ -126,7 +126,7 @@ let error = ref(false);
 
 const foodData = ref({
   name: "",
-  type: 0,
+  type: "",
   mogyoroAllergia: false,
   halAllergia: false,
   tojasAllergia: false,
