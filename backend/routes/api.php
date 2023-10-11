@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\etelFelajanlasController;
 use App\Http\Controllers\etelFelajanloController;
 use App\Http\Controllers\etelMentoController;
 use App\Http\Controllers\jotekonysagiSzervezetController;
@@ -22,9 +23,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/user-signup', [etelMentoController::class, 'store']);
 Route::post('/user-login', [etelMentoController::class, 'loginRequest']);
+Route::post('/user-modify/{id}', [etelMentoController::class, 'update']);
 
 Route::post('/charity-signup', [jotekonysagiSzervezetController::class, 'store']);
 Route::post('/charity-login', [jotekonysagiSzervezetController::class, 'loginRequest']);
+Route::post('/charity-modify', [jotekonysagiSzervezetController::class, 'update']);
 
 Route::post('/advertiser-signup', [etelFelajanloController::class, 'store']);
 Route::post('/advertiser-login', [etelFelajanloController::class, 'loginRequest']);
+Route::post('/advertiser-modify', [etelFelajanloController::class, 'update']);
+
+Route::post('/create-food', [etelFelajanlasController::class, 'createFood']);
