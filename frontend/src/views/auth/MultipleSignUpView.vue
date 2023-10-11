@@ -54,7 +54,7 @@
     </table>
 
     <div class="buttons my-5">
-      <button class="btn btn-primary me-4" @click="trySendData()">Küldés</button>
+      <button class="btn btn-primary me-4" @click="sendUserSignins()">Küldés</button>
       <button
         class="btn btn-warning me-4 ms-4"
         data-bs-toggle="modal"
@@ -254,14 +254,6 @@ function reset() {
   error.value = false;
 }
 
-function trySendData() {
-  if (foodsavers.value != 0) {
-    console.log(foodsavers);
-  } else {
-    alert("Hiba! Az adatokat nem sikerült beolvasni és elküldeni!");
-  }
-}
-
 async function getLocation(city) {
   let headersList = {
     Accept: "*/*",
@@ -279,6 +271,30 @@ async function getLocation(city) {
   let data = response.data[0];
   console.log(data);
   return data;
+}
+
+async function sendUserSignins() {
+  for (let index = 0; index < foodsavers.value.length; index++) {
+    if (
+      foodsavers.value[index].nev &&
+      foodsavers.value[index].longitude &&
+      foodsavers.value[index].longitude
+    ) {
+      error.value = false;
+      //POST
+      await Axios.post("/user-signin", foodSaverData.value)
+        .then(() => {
+          error.value = false;
+          console.log("regisztál");
+        })
+        .catch(() => {
+          error.value = true;
+          console.log("hiba");
+        });
+    } else {
+      error.value = true;
+    }
+  }
 }
 </script>
 

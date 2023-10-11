@@ -8,7 +8,7 @@
           type="text"
           class="form-control"
           id="name"
-          v-model="felhasznalo.nev"
+          v-model="felhasznaloData.nev"
           :disabled="isDisabled"
         />
       </div>
@@ -18,7 +18,7 @@
           type="email"
           class="form-control"
           id="email"
-          v-model="felhasznalo.emailCim"
+          v-model="felhasznaloData.emailCim"
           :disabled="isDisabled"
         />
       </div>
@@ -28,7 +28,7 @@
           type="password"
           class="form-control"
           id="password"
-          v-model="felhasznalo.jelszo"
+          v-model="felhasznaloData.jelszo"
           :disabled="isDisabled"
         />
       </div>
@@ -39,7 +39,7 @@
           placeholder="Szélesség"
           class="form-control mb-2"
           id="latitude"
-          v-model="felhasznalo.latitude"
+          v-model="felhasznaloData.latitude"
           :disabled="isDisabled"
         />
         <input
@@ -47,7 +47,7 @@
           placeholder="Hosszúság"
           class="form-control mt-2"
           id="longitude"
-          v-model="felhasznalo.longitude"
+          v-model="felhasznaloData.longitude"
           :disabled="isDisabled"
         />
       </div>
@@ -71,7 +71,8 @@
 <script setup>
 import { ref } from "vue";
 let isDisabled = ref(true);
-let felhasznalo = ref({
+let error = ref(false);
+let felhasznaloData = ref({
   nev: "Dávid",
   emailCim: "asd@gmail.com",
   jelszo: "Jelszo123",
@@ -84,13 +85,29 @@ function edit() {
 }
 
 function save() {
-  isDisabled.value = true;
   if (
-    felhasznalo.value.nev &&
-    felhasznalo.value.latitude &&
-    felhasznalo.value.longitude
+    felhasznaloData.value.nev &&
+    felhasznaloData.value.latitude &&
+    felhasznaloData.value.longitude
   ) {
-    console.log(felhasznalo);
+    console.log(felhasznaloData);
+
+    Axios.patch("/user-modify/1", felhasznaloData.value)
+      .then(() => {
+        error.value = false;
+        isDisabled = true;
+        console.log("frissítve");
+        alert("Fiókadatok sikeresen frissültek!");
+      })
+      .catch(() => {
+        error.value = true;
+        console.log("hiba");
+      });
+    console.log(felhasznaloData);
+  } else {
+    isDisabled = false;
+    error.value = true;
+    alert("Hiba! Hiányos profil adatok!");
   }
 }
 </script>

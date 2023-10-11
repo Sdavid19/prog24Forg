@@ -86,10 +86,8 @@ let signupData = ref({
   name: "a",
   email: "a",
   password: "a",
-  geoLocation: {
-    latitude: 10,
-    longitude: 10,
-  },
+  latitude: 10,
+  longitude: 10,
 });
 
 function trySignUp() {
