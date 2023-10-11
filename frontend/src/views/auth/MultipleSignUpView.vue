@@ -186,7 +186,11 @@ async function formatCsv(content) {
             diabetes: Number(dataDiabetes),
             allergies: format(dataAllergies),
             intolarences: format(dataIntolerances),
-            geolocation: await getLocation(dataPlace),
+            //geolocation: await getLocation(dataPlace),
+            geolocation: {
+              longitude: 0,
+              latitude: 0,
+            },
           };
         } else {
           error.value = true;
@@ -197,7 +201,6 @@ async function formatCsv(content) {
   } else {
     error.value = true;
   }
-
   loading = false;
 }
 

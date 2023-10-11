@@ -6,7 +6,7 @@
 
 <script setup>
 import FoodSaverSignupComponent from "../components/FoodSaverSignupComponent.vue";
-import FoodAdvertiserSignupComponent from "../components/FoodAdvertiserSignupComponent.vue";
+import FoodAdvertiserSignupComponent from "../components/foodadvertisersignupcomponent.vue";
 </script>
 
 <style lang="css" scoped>
