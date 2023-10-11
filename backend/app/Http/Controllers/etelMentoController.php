@@ -18,24 +18,28 @@ class etelMentoController extends Controller
     }
     public function store(registrationUserRequest $request)
     {
-        $rawJson = json_decode($request->input);
-
-        $foodAllergy = implode($rawJson->allergies);
-        $dietary = implode($rawJson->diet);
-        $cuisinePreference = implode($rawJson->preferences);
-        $foodIntolerance = implode($rawJson->intolerances);
-
         try {
             $etelMento =  etelMento::create([
-                'nev' => $rawJson('name'),
-                'emailCim' => $rawJson('email'),
-                'jelszo' => $rawJson('password'),
-                'geolokaciosCim' => $rawJson('geolocation'),
-                'etrend' => ($dietary),
-                'konyhaPreferencia' => ($cuisinePreference),
-                'diabetesz' => $rawJson('diabetes'),
-                'etelIntolerancia' => ($foodIntolerance),
-                'etelAllergia' => ($foodAllergy)
+                'nev' => $request->input('name'),
+                'emailCim' => $request->input('email'),
+                'jelszo' => $request->input('password'),
+                'longitude' => $request->input('longitude'),
+                'latitude' => $request->input('latitude'),
+                'diabetesz' => $request->input('diabetes'),
+                'mogyoroAllergia' => $request->input('mogyoroAllergia'),
+                'halAllergia' => $request->input('halAllergia'),
+                'tojasAllergia' => $request->input('tojasAllergia'),
+                'laktozErzekenyseg' => $request->input('laktozErzekenyseg'),
+                'glutenErzekenyseg' => $request->input('glutenErzekenyseg'),
+                'olaszKonyha' => $request->input('olaszKonyha'),
+                'gorogKonyha' => $request->input('gorogKonyha'),
+                'amerikaiKonyha' => $request->input('amerikaiKonyha'),
+                'mexikoiKonyha' => $request->input('mexikoiKonyha'),
+                'magyarKonyha' => $request->input('magyarKonyha'),
+                'japanKonyha' => $request->input('japanKonyha'),
+                'szimplaEtrend' => $request->input('szimplaEtrend'),
+                'vegetarianusEtrend' => $request->input('vegetarianusEtrend'),
+                'veganEtrend' => $request->input('veganEtrend')
             ]);
             return response()->json(['message'=>'ok '], 200);
             // Auth::login($etelMento);

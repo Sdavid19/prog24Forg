@@ -208,44 +208,44 @@ function tryRegistrate() {
     moreData.value.cuisinePreference != "" &&
     moreData.value.diet != ""
   ) {
-    // let registData = {
-    //   name: props.data.name,
-    //   email: props.data.email,
-    //   password: props.data.password,
-    //   latitude: 10,
-    //   longitude: 10,
-    //   diabetes: 0,
-
-    //   mogyoroAlergia: moreData.allergies.includes("1"),
-    //   halAlergia: moreData.allergies.includes("2"),
-    //   tojasAlergia: moreData.allergies.includes("3"),
-
-    //   laktozErzekenyseg: moreData.intolerances.includes("1"),
-    //   glutenErzekenyseg: moreData.intolerances.includes("2"),
-
-    //   olaszKonyha: moreData.cuisinePreference.includes("1"),
-    //   gorogKonyha: moreData.cuisinePreference.includes("2"),
-    //   amerikaiKonyha: moreData.cuisinePreference.includes("3"),
-    //   mexikoiKonyha: moreData.cuisinePreference.includes("4"),
-    //   magyarKonyha: moreData.cuisinePreference.includes("5"),
-    //   japanKonyha: moreData.cuisinePreference.includes("6"),
-    // };
     let registData = {
       name: props.data.name,
       email: props.data.email,
       password: props.data.password,
       latitude: 10,
       longitude: 10,
-      diabetes: moreData.value.diabetes,
-      allergies: moreData.value.allergies,
-      intolerances: moreData.value.intolerances,
-      cuisinePreference: moreData.value.cuisinePreference,
-      diet: moreData.value.diet,
+      diabetes: 0,
+
+      mogyoroAlergia: moreData.allergies.includes("1")==true?true:false,
+      halAlergia: moreData.allergies.includes("2"),
+      tojasAlergia: moreData.allergies.includes("3"),
+
+      laktozErzekenyseg: moreData.intolerances.includes("1"),
+      glutenErzekenyseg: moreData.intolerances.includes("2"),
+
+      olaszKonyha: moreData.cuisinePreference.includes("1"),
+      gorogKonyha: moreData.cuisinePreference.includes("2"),
+      amerikaiKonyha: moreData.cuisinePreference.includes("3"),
+      mexikoiKonyha: moreData.cuisinePreference.includes("4"),
+      magyarKonyha: moreData.cuisinePreference.includes("5"),
+      japanKonyha: moreData.cuisinePreference.includes("6"),
     };
-    const ready = JSON.stringify(registData);
-    console.log(ready);
+    // let registData = {
+    //   name: props.data.name,
+    //   email: props.data.email,
+    //   password: props.data.password,
+    //   latitude: 10,
+    //   longitude: 10,
+    //   diabetes: moreData.value.diabetes,
+    //   allergies: moreData.value.allergies,
+    //   intolerances: moreData.value.intolerances,
+    //   cuisinePreference: moreData.value.cuisinePreference,
+    //   diet: moreData.value.diet,
+    // };
+    // const ready = JSON.stringify(registData);
+    console.log(registData);
     //POST
-    Axios.post("/user-signup", ready)
+    Axios.post("/user-signup", registData)
       .then(() => {
         error.value = false;
         console.log("ok");
