@@ -20,7 +20,7 @@
               id="allergie1"
               name="mogyoro"
               value="1"
-              v-model="moreData.allergies"
+              v-model="registData.mogyoroAllergia"
             />
             <label class="form-check-label" for="allergie1">Mogyoró</label>
           </div>
@@ -31,7 +31,7 @@
               id="allergie2"
               name="hal"
               value="2"
-              v-model="moreData.allergies"
+              v-model="registData.halAllergia"
             />
             <label class="form-check-label" for="allergie2">Hal</label>
           </div>
@@ -42,7 +42,7 @@
               id="allergie3"
               name="tojas"
               value="3"
-              v-model="moreData.allergies"
+              v-model="registData.tojasAllergia"
             />
             <label class="form-check-label" for="allergie3">Tojás</label>
           </div>
@@ -56,16 +56,18 @@
               class="form-check-input"
               type="checkbox"
               value="1"
-              v-model="moreData.foodIntolerance"
+              v-model="registData.laktozErzekenyseg"
+              id="defaultCheck1"
             />
             <label class="form-check-label" for="defaultCheck1">Laktóz</label>
           </div>
           <div class="form-check">
             <input
+              id="defaultCheck2"
               class="form-check-input"
               type="checkbox"
               value="2"
-              v-model="moreData.foodIntolerance"
+              v-model="registData.glutenErzekeny"
             />
             <label class="form-check-label" for="defaultCheck2">Glutén</label>
           </div>
@@ -80,7 +82,7 @@
               type="checkbox"
               id="cuisinePreference1"
               value="1"
-              v-model="moreData.cuisinePreference"
+              v-model="registData.olaszKonyha"
             />
             <label class="form-check-label" for="cuisinePreference1">Olasz</label>
           </div>
@@ -90,7 +92,7 @@
               type="checkbox"
               id="cuisinePreference2"
               value="2"
-              v-model="moreData.cuisinePreference"
+              v-model="registData.gorogKonyha"
             />
             <label class="form-check-label" for="cuisinePreference2">Görög</label>
           </div>
@@ -100,7 +102,7 @@
               type="checkbox"
               id="cuisinePreference3"
               value="3"
-              v-model="moreData.cuisinePreference"
+              v-model="registData.amerikaiKonyha"
             />
             <label class="form-check-label" for="cuisinePreference3">Amerikai</label>
           </div>
@@ -110,7 +112,7 @@
               type="checkbox"
               id="cuisinePreference4"
               value="4"
-              v-model="moreData.cuisinePreference"
+              v-model="registData.mexikoiKonyha"
             />
             <label class="form-check-label" for="cuisinePreference4">Mexikói</label>
           </div>
@@ -120,7 +122,7 @@
               type="checkbox"
               id="cuisinePreference5"
               value="5"
-              v-model="moreData.cuisinePreference"
+              v-model="registData.magyarKonyha"
             />
             <label class="form-check-label" for="cuisinePreference5">Magyar</label>
           </div>
@@ -130,7 +132,7 @@
               type="checkbox"
               id="cuisinePreference6"
               value="6"
-              v-model="moreData.cuisinePreference"
+              v-model="registData.japaKonyha"
             />
             <label class="form-check-label" for="cuisinePreference6">Japán</label>
           </div>
@@ -145,7 +147,7 @@
               type="checkbox"
               id="diet1"
               value="1"
-              v-model="moreData.diet"
+              v-model="registData.szimplaEtrend"
             />
             <label class="form-check-label" for="diet1">Szimpla</label>
           </div>
@@ -155,7 +157,7 @@
               type="checkbox"
               id="diet2"
               value="2"
-              v-model="moreData.diet"
+              v-model="registData.veganEtrend"
             />
             <label class="form-check-label" for="diet2">Vegán</label>
           </div>
@@ -165,7 +167,7 @@
               type="checkbox"
               id="diet3"
               value="3"
-              v-model="moreData.diet"
+              v-model="registData.vegetarianusEtrend"
             />
             <label class="form-check-label" for="diet3">Vegetáriánus</label>
           </div>
@@ -196,53 +198,32 @@ const moreData = ref({
   diet: [],
 });
 
+let registData = ref({
+  name: props.data.name,
+  email: props.data.email,
+  password: props.data.password,
+  diabetes: 0,
+  longitude: 0,
+  latitude: 0,
+
+  mogyoroAllergia: false,
+  halAllergia: false,
+  tojasAllergia: false,
+  laktozErzekenyseg: false,
+  glutenErzekeny: false,
+  olaszKonyha: false,
+  gorogKonyha: false,
+  amerikaiKonyha: false,
+  mexikoiKonyha: false,
+  magyarKonyha: false,
+  japaKonyha: false,
+  szimplaEtrend: false,
+  vegetarianusEtrend: false,
+  veganEtrend: false,
+});
+
 function tryRegistrate() {
-  if (
-    props.data.name != "" &&
-    props.data.email != "" &&
-    props.data.password != "" &&
-    props.data.geolocation != "" &&
-    moreData.value.diabetes !== "" &&
-    moreData.value.allergies != "" &&
-    moreData.value.intolerances != "" &&
-    moreData.value.cuisinePreference != "" &&
-    moreData.value.diet != ""
-  ) {
-    let registData = {
-      name: props.data.name,
-      email: props.data.email,
-      password: props.data.password,
-      latitude: 10,
-      longitude: 10,
-      diabetes: 0,
-
-      mogyoroAlergia: moreData.allergies.includes("1")==true?true:false,
-      halAlergia: moreData.allergies.includes("2"),
-      tojasAlergia: moreData.allergies.includes("3"),
-
-      laktozErzekenyseg: moreData.intolerances.includes("1"),
-      glutenErzekenyseg: moreData.intolerances.includes("2"),
-
-      olaszKonyha: moreData.cuisinePreference.includes("1"),
-      gorogKonyha: moreData.cuisinePreference.includes("2"),
-      amerikaiKonyha: moreData.cuisinePreference.includes("3"),
-      mexikoiKonyha: moreData.cuisinePreference.includes("4"),
-      magyarKonyha: moreData.cuisinePreference.includes("5"),
-      japanKonyha: moreData.cuisinePreference.includes("6"),
-    };
-    // let registData = {
-    //   name: props.data.name,
-    //   email: props.data.email,
-    //   password: props.data.password,
-    //   latitude: 10,
-    //   longitude: 10,
-    //   diabetes: moreData.value.diabetes,
-    //   allergies: moreData.value.allergies,
-    //   intolerances: moreData.value.intolerances,
-    //   cuisinePreference: moreData.value.cuisinePreference,
-    //   diet: moreData.value.diet,
-    // };
-    // const ready = JSON.stringify(registData);
+  if (props.data.name != "" && props.data.email != "" && props.data.password != "") {
     console.log(registData);
     //POST
     Axios.post("/user-signup", registData)

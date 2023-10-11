@@ -12,6 +12,7 @@
           class="form-select"
           aria-label="Default select example"
           v-model="signupData.userType"
+          id="companyName"
         >
           <option selected value="1">Ételmentő</option>
           <option value="2">Jótékonysági szervezet</option>
@@ -61,7 +62,7 @@
   <div class="more-data-grid">
     <FoodSaverProfileComponent v-if="signupData.userType == 1" :data="signupData" />
     <!-- <FoodAdvertiserSignupComponent v-if="signupData.userType == 2" /> -->
-    <FoodAdvertiserSignupComponent v-if="signupData.userType == 3" />
+    <FoodAdvertiserSignupComponent v-if="signupData.userType == 3" :data="signupData" />
   </div>
 </template>
 
