@@ -1,8 +1,13 @@
 <template>
-  <h1 class="text-center my-3">Ételmentés</h1>
+  <img
+    class="w-100"
+    src="https://newellbrands.scene7.com/is/image/NewellRubbermaid/FoodSaver%20Homepage_FreshBucks%20Banner_Desktop?fmt=jpeg&wid=2880"
+    alt=""
+  />
+  <h1 class="text-center my-3 display-1">Ételmentés</h1>
   <p>
-    Alkalmazásunk segítségével megmentjük az amúgy elpocsékolás sorsára jutó ételetek. Az
-    ételfelajánlás bárkitől érkezhet, ne maradj le te se!
+    Alkalmazásunk segítségével <b>megmentjük</b> az amúgy elpocsékolás sorsára jutó
+    ételetek. Az ételfelajánlás bárkitől érkezhet, ne maradj le te se!
   </p>
 
   <p>
@@ -14,9 +19,7 @@
   szervezetek jelentkezését is!
 </template>
 
-<script setup>
-
-</script>
+<script setup></script>
 
 <style scoped>
 .grid {
@@ -43,5 +46,11 @@ div {
 .top {
   height: 50vh;
   padding: 50px;
+}
+
+h1 {
+  background-color: rgb(39, 39, 39, 0.6);
+  color: azure;
+  padding: 10px;
 }
 </style>

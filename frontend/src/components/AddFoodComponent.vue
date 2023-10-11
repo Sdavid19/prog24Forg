@@ -16,7 +16,7 @@
           class="form-control"
           id="name"
           placeholder="Étel neve"
-          v-model="foodData.nev"
+          v-model="foodData.name"
         />
       </div>
       <div class="mb-3">
@@ -138,8 +138,7 @@ const foodData = ref({
 
 function tryAdddingFood() {
   if (
-    foodData.value.nev &&
-    foodData.value.foodCategory &&
+    foodData.value.name &&
     foodData.value.expirationDate &&
     foodData.value.consumption &&
     foodData.value.cousine
