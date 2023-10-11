@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/create-food', [etelFelajanlasController::class, 'createFood']);
+
 Route::post('/user-signup', [etelMentoController::class, 'store']);
 Route::post('/user-login', [etelMentoController::class, 'loginRequest']);
 Route::post('/user-modify/{id}', [etelMentoController::class, 'update']);
@@ -33,5 +35,4 @@ Route::post('/advertiser-signup', [etelFelajanloController::class, 'store']);
 Route::post('/advertiser-login', [etelFelajanloController::class, 'loginRequest']);
 Route::post('/advertiser-modify', [etelFelajanloController::class, 'update']);
 
-Route::post('/create-food', [etelFelajanlasController::class, 'createFood']);
 

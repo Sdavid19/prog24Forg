@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nev', 75);
             $table->string('típus')->nullable();
-            $table->boolean('helybenFogyaszthato')->nullable();
+            $table->number('helybenFogyaszthato')->nullable();
             $table->boolean('mogyoroAllergia')->nullable();
             $table->boolean('halAllergia')->nullable();
             $table->boolean('tojasAllergia')->nullable();

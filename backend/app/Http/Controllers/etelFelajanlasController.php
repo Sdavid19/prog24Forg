@@ -23,8 +23,8 @@ class etelFelajanlasController extends Controller
                 'tojasAllergia' => $request->input('tojasAllergia'),
                 'szojaAllergia' => $request->input('szojaAllergia'),
                 'konyhaJelleg' => $request->input('cousine')
-                
             ]);
+            return response()->json('ok', 200);
         } catch (Exception $e) {
             return response()->json(['message'=>$e], 400);
         }
