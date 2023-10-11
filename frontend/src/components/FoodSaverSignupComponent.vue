@@ -233,11 +233,11 @@ function tryRegistrate() {
       })
       .catch(() => {
         error.value = true;
-        console.log("hiba :c");
+        console.log("hiba");
       });
   } else {
     error.value = true;
-    console.log("Üres :c");
+    console.log("Üres");
   }
   console.log(registData);
 }
