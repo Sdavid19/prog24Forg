@@ -35,7 +35,7 @@
       </thead>
       <tbody>
         <tr v-for="foodSaver in foodsavers">
-          <td>{{ foodSaver.nev }}</td>
+          <td>{{ foodSaver.name }}</td>
           <td>{{ foodSaver.szuletesiHely }}</td>
           <td>{{ foodSaver.szuletesiDatum }}</td>
           <td>{{ foodSaver.diabetesz ? foodSaver.diabetesz : 0 }}</td>
@@ -128,7 +128,7 @@ import { ref } from "vue";
 import Axios from "../../stores/dataService";
 
 let foodSaverData = ref({
-  nev: "",
+  name: "",
   emailCim: "",
   longitude: 0,
   latitude: 0,
@@ -194,7 +194,8 @@ async function formatCsv(content) {
         let dataIntolerances = [data[8], data[9]];
         if (dataName && dataPlace && dataDate) {
           foodSaverData.value = {
-            nev: dataName,
+            userType: 2,
+            name: dataName,
             emailCim: "",
             jelszo: "",
             longitude: geolocation.longitude,
@@ -232,18 +233,6 @@ async function formatCsv(content) {
   loading = false;
 }
 
-//Intolerancia és Allergia megformázása
-function format(array) {
-  array = array.filter((str) => str != "");
-
-  for (let index = 0; index < array.length; index++) {
-    if (array[index] === "X") {
-      array[index] = index + 1;
-    }
-  }
-  return array;
-}
-
 function resetFileValue() {
   document.getElementById("formFile").value = "";
   reset();
@@ -276,13 +265,13 @@ async function getLocation(city) {
 async function sendUserSignins() {
   for (let index = 0; index < foodsavers.value.length; index++) {
     if (
-      foodsavers.value[index].nev &&
+      foodsavers.value[index].name &&
       foodsavers.value[index].longitude &&
       foodsavers.value[index].longitude
     ) {
       error.value = false;
       //POST
-      await Axios.post("/user-signin", foodSaverData.value)
+      await Axios.post("/user-signup", foodSaverData.value)
         .then(() => {
           error.value = false;
           console.log("regisztál");
@@ -294,6 +283,9 @@ async function sendUserSignins() {
     } else {
       error.value = true;
     }
+  }
+  if (!error.value) {
+    alert("Sikeresen regisztrálta a felhasználókat!");
   }
 }
 </script>
