@@ -24,7 +24,8 @@ class jotekonysagiSzervezetController extends Controller
                 'nev' => $request->input('name'),
                 'emailCim' => $request->input('email'),
                 'jelszo' => $request->input('password'),
-                'geolokaciosCim' => $request->input('geolocation')
+                'longitude' => $request->input('longitude'),
+                'latitude' => $request->input('latitude')
             ]);
             return response()->json(['message'=>'ok '], 200);
             /*Auth::login($jotekonysagiSzervezet);
