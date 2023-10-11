@@ -21,7 +21,7 @@ class etelMentoController extends Controller
         try {
             $etelMento =  etelMento::create([
                 'nev' => $request->input('name'),
-                'emailCim' => $request->input('email')->nullable(),
+                'emailCim' => $request->input('email'),
                 'jelszo' => $request->input('password'),
                 'longitude' => $request->input('longitude'),
                 'latitude' => $request->input('latitude'),
@@ -29,6 +29,7 @@ class etelMentoController extends Controller
                 'mogyoroAllergia' => $request->input('mogyoroAllergia'),
                 'halAllergia' => $request->input('halAllergia'),
                 'tojasAllergia' => $request->input('tojasAllergia'),
+                'szojaAllergia' => $request->input('szojaAllergia'),
                 'laktozErzekenyseg' => $request->input('laktozErzekenyseg'),
                 'glutenErzekenyseg' => $request->input('glutenErzekenyseg'),
                 'olaszKonyha' => $request->input('olaszKonyha'),

@@ -16,12 +16,26 @@ return new class extends Migration
             $table->string('nev', 100);
             $table->string('emailCim', 100)->nullable();
             $table->string('jelszo', 100);
-            $table->double('geolokaciosCim', 50);
-            $table->integer('etrend')->nullable();
-            $table->integer('konyhaPreferencia')->nullable();
+            $table->double('longitude', 50);
+            $table->double('latitude', 50);
+            $table->boolean('mogyoroAllergia');
+            $table->boolean('halAllergia');
+            $table->boolean('tojasAllergia');
+            $table->boolean('szojaAllergia');
+            $table->boolean('laktozErzekenyseg');
+            $table->boolean('glutenErzekenyseg');
+            $table->boolean('olaszKonyha');
+            $table->boolean('gorogKonyha');
+            $table->boolean('amerikaiKonyha');
+            $table->boolean('mexikoiKonyha');
+            $table->boolean('magyarKonyha');
+            $table->boolean('japanKonyha');
+            $table->boolean('szimplaEtrend');
+            $table->boolean('vegetarianusEtrend');
+            $table->boolean('veganEtrend');
             $table->integer('diabetesz')->nullable();
-            $table->string('etelIntolerancia', 50)->nullable();
-            $table->integer('etelAllergia')->nullable();
+
+
             $table->timestamps();
         });
     }
