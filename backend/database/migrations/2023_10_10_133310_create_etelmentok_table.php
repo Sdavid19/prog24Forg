@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('jelszo', 100);
             $table->double('longitude', 50);
             $table->double('latitude', 50);
+            $table->string('szuletesiHely')->nullable();
+            $table->date('szuletesiDatum')->nullable();
             $table->boolean('mogyoroAllergia');
             $table->boolean('halAllergia');
             $table->boolean('tojasAllergia');
