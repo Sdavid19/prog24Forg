@@ -58,11 +58,22 @@
               class="form-check-input"
               type="checkbox"
               id="allergie3"
-              name="tojas"
+              name="szoja"
               value="3"
               v-model="foodData.allergies"
             />
-            <label class="form-check-label" for="allergie3">Tojás</label>
+            <label class="form-check-label" for="allergie3">Szója</label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="allergie4"
+              name="tojas"
+              value="4"
+              v-model="foodData.allergies"
+            />
+            <label class="form-check-label" for="allergie4">Tojás</label>
           </div>
         </div>
       </fieldset>
@@ -115,7 +126,7 @@ const foodData = ref({
   type: 0,
   allergies: [],
   expirationDate: "",
-  consumption: false,
+  consumption: 0,
   cousine: 0,
 });
 

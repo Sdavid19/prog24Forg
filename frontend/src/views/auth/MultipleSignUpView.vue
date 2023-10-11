@@ -1,17 +1,26 @@
 <template>
-  <h2 class="my-5">Felhasználó felvitel fájlból</h2>
+  <h2 class="my-5">Ételmentő felvitel fájlból</h2>
   <div class="my-5">
     <label for="formFile" class="form-label">Válasszon ki egy fájlt</label>
     <input
       class="form-control"
       type="file"
       id="formFile"
-      @change="readFile"
       accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+      @change="readFile"
     />
   </div>
   <p class="text-danger" v-if="error">Hiba a fájl beolvasása közben!</p>
-  <div v-if="foodsavers.length && !error">
+  <div class="d-flex justify-content-center">
+    <div
+      class="spinner-border text-center"
+      style="width: 5rem; height: 5rem"
+      role="status"
+      v-if="loading"
+    ></div>
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div v-if="foodsavers.length && !error && !loading">
     <h2 class="my-3">Előnézet:</h2>
     <table class="table main">
       <thead>
@@ -114,6 +123,7 @@
 
 <script setup>
 import { ref } from "vue";
+import Axios from "../../stores/dataService";
 
 let foodSaverData = ref({
   name: "",
@@ -122,56 +132,73 @@ let foodSaverData = ref({
   diabetes: 0,
   allergies: [],
   intolarences: [],
+  geolocation: {
+    longitude: 0,
+    latitude: 0,
+  },
 });
 
 let foodsavers = ref([]);
 let error = ref(false);
+let loading = false;
 
 //Fájlbeolvasás
-function readFile(e) {
+async function readFile(e) {
+  loading = true;
   let file = e.target.files[0];
   const reader = new FileReader();
   reader.readAsText(file);
-  reader.onload = () => {
+  reader.onload = async () => {
     const csvContent = reader.result;
-    formatCsv(csvContent);
+    await formatCsv(csvContent);
   };
   reset();
 }
 
 //Csv fájl mentése JSON formátumba
-function formatCsv(content) {
+async function formatCsv(content) {
   let rows = content.split(/\r?\n/);
-
-  rows.splice(0, 2);
-
-  rows.forEach((foodSaver) => {
-    if (foodSaver) {
-      let data = foodSaver.split(";");
-      let dataName = data[0];
-      let dataPlace = data[1];
-      let dataDate = data[2];
-      let dataDiabetes = data[3];
-      let dataAllergies = [];
-      for (let index = 4; index <= 7; index++) {
-        dataAllergies.push(data[index]);
+  let header = rows[0].split(";");
+  console.log();
+  if (
+    header.includes("Név") &&
+    header.includes("Születési idő") &&
+    header.includes("Születési hely")
+  ) {
+    rows.splice(0, 2);
+    for (const foodSaver of rows) {
+      if (foodSaver) {
+        let data = foodSaver.split(";");
+        let dataName = data[0];
+        let dataPlace = data[1];
+        let dataDate = data[2];
+        let dataDiabetes = data[3];
+        let dataAllergies = [];
+        for (let index = 4; index <= 7; index++) {
+          dataAllergies.push(data[index]);
+        }
+        let dataIntolerances = [data[8], data[9]];
+        if (dataName && dataPlace && dataDate) {
+          foodSaverData.value = {
+            name: dataName,
+            birthPlace: dataPlace,
+            birthDate: dataDate,
+            diabetes: Number(dataDiabetes),
+            allergies: format(dataAllergies),
+            intolarences: format(dataIntolerances),
+            geolocation: await getLocation(dataPlace),
+          };
+        } else {
+          error.value = true;
+        }
+        foodsavers.value.push(foodSaverData.value);
       }
-      let dataIntolerances = [data[8], data[9]];
-      if (dataName && dataPlace && dataDate) {
-        foodSaverData.value = {
-          name: dataName,
-          birthPlace: dataPlace,
-          birthDate: dataDate,
-          diabetes: Number(dataDiabetes),
-          allergies: format(dataAllergies),
-          intolarences: format(dataIntolerances),
-        };
-      } else {
-        error.value = true;
-      }
-      foodsavers.value.push(foodSaverData.value);
     }
-  });
+  } else {
+    error.value = true;
+  }
+
+  loading = false;
 }
 
 //Intolerancia és Allergia megformázása
@@ -202,6 +229,25 @@ function trySendData() {
   } else {
     alert("Hiba! Az adatokat nem sikerült beolvasni és elküldeni!");
   }
+}
+
+async function getLocation(city) {
+  let headersList = {
+    Accept: "*/*",
+    "X-Api-Key": "3Tz3SufsKd7o1KQsjiR6OA==qr5UoIUdEXEIzFr6",
+  };
+
+  let reqOptions = {
+    url: "https://api.api-ninjas.com/v1/geocoding?city=" + city,
+    method: "GET",
+    headers: headersList,
+  };
+
+  let response = await Axios.request(reqOptions);
+
+  let data = response.data[0];
+  console.log(data);
+  return { longitude: data.longitude, latitude: data.latitude };
 }
 </script>
 
